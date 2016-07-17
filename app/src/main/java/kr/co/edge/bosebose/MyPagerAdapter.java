@@ -17,7 +17,6 @@ import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
 public class MyPagerAdapter extends PagerAdapter {
 
-    int img[] = {R.drawable.pic1,R.drawable.pic2, R.drawable.pic3, R.drawable.pic8, R.drawable.pic5, R.drawable.pic6, R.drawable.pic7, R.drawable.pic4 };
     ArrayList<Item> itemList;
     ArrayList<Store> storeList;
 
