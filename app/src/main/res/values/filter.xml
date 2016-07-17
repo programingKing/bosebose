@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filter">
+        <item >인기순</item>
+        <item >신상순</item>
+        <item >가격순</item>
+    </string-array>
+</resources>

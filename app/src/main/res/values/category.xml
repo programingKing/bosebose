@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item >저고리</item>
+        <item >옷고름</item>
+        <item >버선</item>
+        <item >갓</item>
+        <item >치마</item>
+        <item >족두리</item>
+        <item >두루마기</item>
+    </string-array>
+</resources>
