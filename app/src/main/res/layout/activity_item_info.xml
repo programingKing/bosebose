@@ -26,6 +26,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:id="@+id/thingsStoreName"
+                android:text="hello"
                 android:layout_weight="7"/>
 
             <ImageButton
@@ -69,7 +71,7 @@
                             android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:layout_weight="8"
-                            android:text="초록 하와이안 셔츠"
+                            android:text="타이틀"
                             android:textSize="20dp"
                             android:gravity="center_vertical"
                             android:id="@+id/thingsTitle"/>
@@ -82,9 +84,21 @@
                     </LinearLayout>
                     <TextView
                         android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="hello"
+                        android:id="@+id/thingsContent"
+                        android:textSize="30dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="hello"
+                        android:id="@+id/thingsPrice"
+                        android:textSize="30dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:text="hello"
-                        android:id="@+id/thingsInfo"
+                        android:id="@+id/thingsTag"
                         android:textSize="30dp"/>
                     <Button
                         android:layout_width="match_parent"

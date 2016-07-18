@@ -37,8 +37,17 @@ public class ItemInfoActivity extends Activity{
         item = (Item)getIntent().getExtras().getSerializable("item");
         imageList = getImageList(item);
 
-        TextView tv = (TextView)findViewById(R.id.thingsInfo);
-        tv.setText(String.valueOf(item.getContent()));
+
+        TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
+        thingsStoreName.setText(String.valueOf(item.getStoreName()));
+        TextView thingsTitle = (TextView)findViewById(R.id.thingsTitle);
+        thingsTitle.setText(String.valueOf(item.getName()));
+        TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
+        thingsContent.setText(String.valueOf(item.getContent()));
+        TextView thingsPrice = (TextView)findViewById(R.id.thingsPrice);
+        thingsPrice.setText(String.valueOf(item.getPrice()));
+        TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
+        thingsTag.setText(String.valueOf(item.getTag()));
 
         carouselView = (CarouselView) findViewById(R.id.thingsImage);
         carouselView.setPageCount(imageList.size());
