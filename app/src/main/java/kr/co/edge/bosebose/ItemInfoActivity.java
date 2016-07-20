@@ -26,6 +26,7 @@ public class ItemInfoActivity extends Activity{
     ArrayList<String> imageList;
     CarouselView carouselView;
     Context context;
+    ImageButton thingsLIke;
     ArrayList<String> likeItems;
     SharedPreferencesHelper sharedPreferencesHelper;
     boolean checkAddLike;
@@ -57,15 +58,15 @@ public class ItemInfoActivity extends Activity{
         thingsPrice.setText(String.valueOf(item.getPrice()));
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
         thingsTag.setText(String.valueOf(item.getTag()));
-        ImageButton thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
+        thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
         //TODO 즐겨찾기에 추가유무에 따라서 토글 되야됨. 이아디가 추가되있으면
 
         if (likeItems.contains(String.valueOf(item.getId()))) {
-            Toast.makeText (context, "즐겨찾기에 추가된 아이",  Toast.LENGTH_SHORT).show();
             checkAddLike = true;
+            thingsLIke.setImageResource(R.drawable.like_clicked);
         } else {
-            Toast.makeText (context, "즐겨찾기에 추가안된 아이",  Toast.LENGTH_SHORT).show();
             checkAddLike = false;
+            thingsLIke.setImageResource(R.drawable.like);
         }
 
         thingsLIke.setOnClickListener(mClickListener);
@@ -101,12 +102,15 @@ public class ItemInfoActivity extends Activity{
                 case R.id.thingsLIke:
                     //TODO 즐겨찾기 추가
                     if (!checkAddLike) {
+                        checkAddLike = true;
                         likeItems.add(String.valueOf(item.getId()));
+                        thingsLIke.setImageResource(R.drawable.like_clicked);
                     } else {
+                        checkAddLike = false;
                         likeItems.remove(String.valueOf(item.getId()));
+                        thingsLIke.setImageResource(R.drawable.like);
                     }
                     sharedPreferencesHelper.setStringArrayPref(context, "likeItems", likeItems);
-                    Toast.makeText (context, "즐겨찾기에서 수정됨",  Toast.LENGTH_SHORT).show();
                     break;
             }
         }
