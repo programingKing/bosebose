@@ -24,12 +24,35 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
+            android:singleLine = "true"
+            android:id="@+id/listStoreName"
             android:text="보세보세" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
+            android:singleLine = "true"
+            android:id="@+id/listStoreContent"
             android:text="여기와서 보세" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000000"
+                android:text="즐겨찾기 수  " />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000000"
+                android:id="@+id/listStoreFavoriteNum"
+                android:text="60"/>
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
