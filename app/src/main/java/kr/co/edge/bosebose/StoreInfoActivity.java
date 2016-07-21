@@ -68,13 +68,13 @@ public class StoreInfoActivity extends Activity {
         TextView storesContent = (TextView)findViewById(R.id.storesContent);
         storesContent.setText(String.valueOf(store.getIntroduction()));
         TextView storeThingsNum = (TextView)findViewById(R.id.storeThingsNum);
-        storeThingsNum.setText(String.valueOf(store.getHit()));
+        storeThingsNum.setText(String.valueOf(store.getItemCount()));
         TextView storeFavoriteNum = (TextView)findViewById(R.id.storeFavoriteNum);
-        storeFavoriteNum.setText(String.valueOf(store.getHit()));
+        storeFavoriteNum.setText(String.valueOf(store.getFavoriteCount()));
         TextView storeTime = (TextView)findViewById(R.id.storeTime);
-        storeTime.setText(String.valueOf(store.getHit()));
+        storeTime.setText(String.valueOf(store.getBusinessHour()));
         TextView storeBreakTime = (TextView)findViewById(R.id.storeBreakTime);
-        storeBreakTime.setText(String.valueOf(store.getHit()));
+        storeBreakTime.setText(String.valueOf(store.getHoliday()));
         TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
         storePhoneNum.setText(String.valueOf(store.getHit()));
 
