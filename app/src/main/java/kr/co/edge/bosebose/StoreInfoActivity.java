@@ -1,21 +1,31 @@
 package kr.co.edge.bosebose;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.net.URI;
 import java.util.ArrayList;
 
 public class StoreInfoActivity extends Activity {
+
     CarouselView carouselView;
+    ImageView imageView;
+    Context context;
 
     Store store;
     ArrayList<String> imageList;
@@ -27,8 +37,36 @@ public class StoreInfoActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_info);
+        context=this;
+
+        findViewById(R.id.backBtn).setOnClickListener(mClickListener);
+        Display mDisplay = getWindowManager().getDefaultDisplay();
 
         store  = (Store) getIntent().getExtras().getSerializable("store");
+
+        imageView = (ImageView)findViewById(R.id.storeImage);
+        System.out.println(store.getImage());
+
+        Picasso.with(context)
+                .load(store.getImage())
+                .resize(mDisplay.getWidth(),mDisplay.getWidth())
+                .centerCrop()
+                .into(imageView);
+
+        TextView storeName = (TextView)findViewById(R.id.storeName);
+        storeName.setText(String.valueOf(store.getName()));
+        TextView storesContent = (TextView)findViewById(R.id.storesContent);
+        storesContent.setText(String.valueOf(store.getIntroduction()));
+        TextView storeThingsNum = (TextView)findViewById(R.id.storeThingsNum);
+        storeThingsNum.setText(String.valueOf(store.getHit()));
+        TextView storeFavoriteNum = (TextView)findViewById(R.id.storeFavoriteNum);
+        storeFavoriteNum.setText(String.valueOf(store.getHit()));
+        TextView storeTime = (TextView)findViewById(R.id.storeTime);
+        storeTime.setText(String.valueOf(store.getHit()));
+        TextView storeBreakTime = (TextView)findViewById(R.id.storeBreakTime);
+        storeBreakTime.setText(String.valueOf(store.getHit()));
+        TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
+        storePhoneNum.setText(String.valueOf(store.getHit()));
 
 /*
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);

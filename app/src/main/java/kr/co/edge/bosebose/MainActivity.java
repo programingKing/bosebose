@@ -15,6 +15,9 @@ public class MainActivity extends Activity {
     private ViewPager mPager;
     ArrayList<Item> itemList;
     ArrayList<Store> storeList;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,8 @@ public class MainActivity extends Activity {
 
         itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
+
+        //TODO store도 해야됨.
 
         mPager = (ViewPager)findViewById(R.id.mian_grid_pager);
         mPager.setAdapter(new MyPagerAdapter(getApplicationContext(),itemList,storeList));
@@ -43,10 +48,12 @@ public class MainActivity extends Activity {
                 case R.id.headerFavoriteStoreBtn:
                     //TODO 암시적 Intent로 전환 가능성
                     i = new Intent(MainActivity.this, FavoriteStoreListActivity.class);
+                    i.putExtra("storeList",storeList);
                     startActivity(i);
                     break;
                 case R.id.headerFavoriteThingsBtn:
                     i = new Intent(MainActivity.this, LikeItemListActivity.class);
+                    i.putExtra("itemList", itemList);
                     startActivity(i);
                     break;
                 case R.id.headerSearchBtn:

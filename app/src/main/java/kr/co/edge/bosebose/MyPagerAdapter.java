@@ -51,7 +51,7 @@ public class MyPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(View pager, int position) {
         View v = null;
-        if(position==0){
+        if (position == 0) {
             v = mInflater.inflate(R.layout.main_grid_items, null);
             v.findViewById(R.id.mainGridViewThings);
 
@@ -75,7 +75,7 @@ public class MyPagerAdapter extends PagerAdapter {
                 }
             });
         }
-        else if(position==1){
+        else if (position == 1) {
             v = mInflater.inflate(R.layout.main_grid_stores, null);
             v.findViewById(R.id.mainGridViewStores);
 

@@ -8,18 +8,40 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
 public class LikeItemListActivity extends Activity {
+
+    ArrayList<Item> itemList;
+    ArrayList<String> likeItems;
+    ArrayList<Item> likeItemList;
+
+    SharedPreferencesHelper sharedPreferencesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_item_list);
-/*
+        sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
+
+        itemList = (ArrayList<Item>) getIntent().getSerializableExtra("itemList");
+        likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
+        likeItemList = new ArrayList<Item>();
+
+        for (int i = 0, ii = likeItems.size(); i < ii ; i++) {
+            for (int j = 0, jj = itemList.size(); j < jj ; j++) {
+                if (likeItems.get(i).equals(String.valueOf(itemList.get(j).getId()))) {
+                    likeItemList.add(itemList.get(j));
+                }
+            }
+        }
+
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
+
         //MyAdapter이 girdView Adapter입니다 ㅠㅠ
-        MyAdapter thingsAdapter = new MyAdapter (getApplicationContext(), R.layout.things_item, img, getWindowManager().getDefaultDisplay().getWidth());
+        MyAdapter thingsAdapter = new MyAdapter (getApplicationContext(), R.layout.things_item, likeItemList, getWindowManager().getDefaultDisplay().getWidth());
         //헤더가 될 뷰를 추가함 GridViewWithHeaderAndFooter는 라이브러리입니다
         GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.favoriteTingsList);
         gvThings.setAdapter(thingsAdapter);
@@ -33,7 +55,7 @@ public class LikeItemListActivity extends Activity {
                 startActivity(i);
             }
         });
-        */
+
     }
 
     //백버튼 제어

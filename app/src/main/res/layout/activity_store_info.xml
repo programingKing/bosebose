@@ -25,6 +25,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:id="@+id/storeName"
                 android:layout_weight="7"/>
 
             <ImageButton
@@ -46,17 +47,11 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff">
 
-                <com.synnapps.carouselview.CarouselView
+                <ImageView
                     android:id="@+id/storeImage"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_weight="6"
-                    app:fillColor="#FFFFFFFF"
-                    app:pageColor="#00000000"
-                    app:radius="6dp"
-                    app:slideInterval="10000"
-                    app:strokeColor="#ffffff"
-                    app:strokeWidth="1dp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6" />
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -72,10 +67,10 @@
                             android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:layout_weight="8"
-                            android:text="The Coner Shop"
+                            android:text="사장님 한마디"
                             android:textSize="20dp"
                             android:gravity="center_vertical"
-                            android:id="@+id/storesTitle"/>
+                            android:id="@+id/storesContent"/>
                         <ImageButton
                             android:layout_width="0dp"
                             android:layout_height="30dp"
@@ -83,16 +78,115 @@
                             android:background="@drawable/star"
                             android:id="@+id/storesLIke"/>
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:text="hello"
-                        android:id="@+id/storesInfo"
-                        android:textSize="30dp"/>
                     <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="#263dc1"></LinearLayout>
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="업소통계"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="상품등록수"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/storeThingsNum"
+                                    android:text="20"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="즐겨찾기"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/storeFavoriteNum"
+                                    android:text="135"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="영업정보"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="영업시간"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/storeTime"
+                                    android:text="매일 낮 12:00 ~ 밤  10:00"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="휴무일"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/storeBreakTime"
+                                    android:text="매일쉽니다"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="문의"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/storePhoneNum"
+                                    android:text="010-9876-1223"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="지도"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#263dc1"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

@@ -17,22 +17,32 @@
             android:background="#ffffff">
 
             <ImageButton
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
-                android:background="@drawable/back"
-                android:layout_weight="1.5"/>
+                android:src="@drawable/backbutton"
+                android:layout_weight="0.8"/>
 
             <TextView
+                android:textSize="20dp"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"/>
+                android:id="@+id/thingsStoreName"
+                android:text="hello"
+                android:layout_weight="7.7"/>
 
             <ImageButton
+                android:padding="9dp"
+                android:background="#ffffff"
+                android:scaleType="fitCenter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headerFavoriteThingsBtn"
-                android:background="@drawable/heart"
+                android:src="@drawable/heart"
                 android:layout_margin="5dp"
                 android:layout_weight="1.5"/>
         </LinearLayout>
@@ -62,36 +72,97 @@
                     android:layout_height="wrap_content"
                     android:background="#ffffff">
                     <LinearLayout
+                        android:layout_margin="20dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:layout_weight="8.5"
+                            android:textStyle="bold"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:text="타이틀"
+                            android:textSize="10pt"
+                            android:gravity="center_vertical"
+                            android:id="@+id/thingsTitle"/>
+                        <ImageButton
+                            android:padding="5dp"
+                            android:layout_weight="1.5"
+                            android:scaleType="fitCenter"
+                            android:background="#ffffff"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/like"
+                            android:id="@+id/thingsLIke"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="8"
-                            android:text="초록 하와이안 셔츠"
-                            android:textSize="20dp"
                             android:gravity="center_vertical"
-                            android:id="@+id/thingsTitle"/>
-                        <ImageButton
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:text="￦"
+                        android:textSize="20dp"/>
+                        <TextView
+                            android:gravity="center_vertical"
+                        android:layout_weight="9"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:text="hello"
+                        android:id="@+id/thingsContent"
+                        android:textSize="20dp"/>
+                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="30dp"
-                            android:layout_weight="2"
-                            android:background="@drawable/heart"
-                            android:id="@+id/thingsLIke"/>
+                            android:text="○"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:text="hello"
+                            android:id="@+id/thingsPrice"
+                            android:textSize="20dp"/>
                     </LinearLayout>
+
+
                     <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:text="hello"
-                        android:id="@+id/thingsInfo"
+                        android:id="@+id/thingsTag"
                         android:textSize="30dp"/>
-                    <Button
+                    <ImageButton
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/move"
+                        android:scaleType="fitCenter"
+                        android:background="#ffffff"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="#f1b67f"
-                        android:text="상점으로 이동"
-                        android:textSize="15dp"/>
+                        android:layout_height="60dp"
+                         />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

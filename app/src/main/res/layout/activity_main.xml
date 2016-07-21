@@ -16,10 +16,10 @@
             android:background="#ffffff">
 
             <ImageButton
+                android:text="보세보세"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/headerMainLogoBtn"
-                android:background="@drawable/bo_sae_bo_sae"
                 android:layout_weight="4"/>
 
             <TextView
@@ -29,27 +29,33 @@
                 />
 
             <ImageButton
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headerFavoriteStoreBtn"
-                android:background="@drawable/star"
-                android:layout_margin="5dp"
+                android:src="@drawable/heart"
+                android:padding="5dp"
                 android:layout_weight="1"/>
 
             <ImageButton
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headerFavoriteThingsBtn"
-                android:background="@drawable/heart"
-                android:layout_margin="5dp"
+                android:src="@drawable/start"
+                android:padding="5dp"
                 android:layout_weight="1"/>
 
             <ImageButton
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headerSearchBtn"
-                android:background="@drawable/search"
-                android:layout_margin="5dp"
+                android:src="@drawable/search"
+                android:padding="5dp"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -60,16 +66,22 @@
             android:background="#ffffff">
 
             <ImageButton
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/secHeaderThings"
-                android:background="@drawable/food1"
+                android:src="@drawable/product"
                 android:layout_weight="1"/>
             <ImageButton
+                android:background="#ffffff"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/secHeaderStores"
-                android:background="@drawable/food2"
+                android:src="@drawable/store"
                 android:layout_weight="1"/>
         </LinearLayout>
 

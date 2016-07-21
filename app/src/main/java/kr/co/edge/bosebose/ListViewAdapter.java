@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -54,6 +55,13 @@ class MyListAdapter extends BaseAdapter {
         }
 
         ImageView image = (ImageView)convertView.findViewById(R.id.storesImagePreview);
+        TextView listStoreName = (TextView)convertView.findViewById(R.id.listStoreName);
+        TextView listStoreContent = (TextView)convertView.findViewById(R.id.listStoreContent);
+        TextView listStoreFavoriteNum = (TextView)convertView.findViewById(R.id.listStoreFavoriteNum);
+        listStoreName.setText(storeList.get(position).getName());
+        listStoreContent.setText(storeList.get(position).getIntroduction());
+        listStoreFavoriteNum.setText(String.valueOf(storeList.get(position).getHit()));
+
         Log.i("lsw",storeList.get(position).getImage());
         Picasso.with(context)
                 .load(storeList.get(position).getImage())
