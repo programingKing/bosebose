@@ -50,9 +50,11 @@ public class LikeItemListActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
                 //값으로 position을 넘겨주는데 이를 이용해서 그 물품의 정보를 가져오면 될거라고 생각해봤어요..
-                i.putExtra("position", position);
+                i.putExtra("item",likeItemList.get(position));
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
+
+
             }
         });
 

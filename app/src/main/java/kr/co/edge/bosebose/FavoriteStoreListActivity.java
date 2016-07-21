@@ -9,29 +9,46 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class FavoriteStoreListActivity extends Activity {
     Intent i;
 
-    /*
-    //이미지 리스트
-    int img[] = {R.drawable.pic1,R.drawable.pic2, R.drawable.pic3, R.drawable.pic8, R.drawable.pic5, R.drawable.pic6, R.drawable.pic7, R.drawable.pic4 };
+    ArrayList<Store> storeList;
+    ArrayList<String> likeStores;
+    ArrayList<Store> likeStoreList;
+
+    SharedPreferencesHelper sharedPreferencesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_store_list);
+        sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
+
+        storeList = (ArrayList<Store>) getIntent().getSerializableExtra("storeList");
+        likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
+        likeStoreList = new ArrayList<Store>();
+
+        for (int i = 0, ii = likeStores.size(); i < ii ; i++) {
+            for (int j = 0, jj = storeList.size(); j < jj ; j++) {
+                if (likeStores.get(i).equals(String.valueOf(storeList.get(j).getId()))) {
+                    likeStoreList.add(storeList.get(j));
+                }
+            }
+        }
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
 
         //가게정보로 넘어감
-        MyListAdapter lIstAdapter = new MyListAdapter (getApplicationContext(), R.layout.stores_item, img, getWindowManager().getDefaultDisplay().getWidth());
+        MyListAdapter lIstAdapter = new MyListAdapter (getApplicationContext(), R.layout.stores_item, likeStoreList, getWindowManager().getDefaultDisplay().getWidth());
         ListView lv = (ListView)findViewById(R.id.favoriteStoreList);
         lv.setAdapter(lIstAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 i = new Intent(FavoriteStoreListActivity.this, StoreInfoActivity.class);
-                i.putExtra("position", position);
+                i.putExtra("store",likeStoreList.get(position));
                 startActivity(i);
             }
         });
@@ -47,5 +64,5 @@ public class FavoriteStoreListActivity extends Activity {
             }
         }
     };
-    */
+
 }
