@@ -38,10 +38,13 @@
             android:singleLine = "true"
             android:id="@+id/listStoreContent"
             android:text="여기와서 보세" />
+<<<<<<< HEAD
 
 
         <!-- android:textAppearance="?android:attr/textAppearanceLarge" -->
 
+=======
+>>>>>>> 7dbcceea88db838fa17a80d5a6676bc12bfc6fdd
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -58,7 +61,6 @@
                 android:id="@+id/listStoreFavoriteNum"
                />
         </LinearLayout>
->>>>>>> 4c73f05167eb08c8dc7d7cf43ea0fa5393fd043c
 
     </LinearLayout>
 </LinearLayout>

@@ -34,6 +34,11 @@ class MyAdapter extends BaseAdapter {
                 (Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void renewItem(ArrayList<Item> itemList){
+        this.itemList.clear();
+        this.itemList.addAll(itemList);
+    }
+
     @Override
     public int getCount() {
         return itemList.size();

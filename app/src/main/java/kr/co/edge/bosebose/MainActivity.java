@@ -26,8 +26,6 @@ public class MainActivity extends Activity {
         itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
 
-        //TODO store도 해야됨.
-
         mPager = (ViewPager)findViewById(R.id.mian_grid_pager);
         mPager.setAdapter(new MyPagerAdapter(getApplicationContext(),itemList,storeList));
         mPager.setCurrentItem(0);

@@ -1,6 +1,8 @@
 package kr.co.edge.bosebose;
 
 import java.util.List;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
@@ -15,9 +17,12 @@ public interface NetworkService {
 
 
     @GET("GetItem.php")
-    Call<List<Item>> getClothes(@Query("filter") String filter, @Query("order") String order);
+    Call<List<Item>> getClothes(@Query("category") String filter, @Query("order") String order);
 
     @GET("GetStore.php")
-    Call<List<Store>> getStore(@Query("filter") String filter, @Query("order") String order);
+    Call<List<Store>> getStore(@Query("category") String filter, @Query("order") String order);
+
+    @GET("AddHit.php")
+    Call<ResponseBody> addHit(@Query("id") String id);
 
 }
