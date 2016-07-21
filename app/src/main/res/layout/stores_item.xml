@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="3dp"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/vpi__background_holo_light">
+    android:background="#ffffff">
 
 
     <ImageView
@@ -22,7 +23,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
@@ -31,23 +32,16 @@
             android:text="보세보세" />
         <TextView
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textColor="#000000"
             android:singleLine = "true"
             android:id="@+id/listStoreContent"
             android:text="여기와서 보세" />
-<<<<<<< HEAD
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:textColor="#000000"
-            android:text="여기와서 보세"/>
+
         <!-- android:textAppearance="?android:attr/textAppearanceLarge" -->
-=======
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -55,16 +49,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#000000"
                 android:text="즐겨찾기 수  " />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#000000"
                 android:id="@+id/listStoreFavoriteNum"
-                android:text="60"/>
+               />
         </LinearLayout>
 >>>>>>> 4c73f05167eb08c8dc7d7cf43ea0fa5393fd043c
 

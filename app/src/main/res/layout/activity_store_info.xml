@@ -16,29 +16,39 @@
             android:background="#ffffff">
 
             <ImageButton
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
-                android:background="@drawable/back"
-                android:layout_weight="1.5"/>
+                android:src="@drawable/backbutton"
+                android:layout_weight="0.8"/>
 
             <TextView
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/storeName"
-                android:layout_weight="7"/>
+                android:text="hello"
+                android:layout_weight="7.7"/>
 
             <ImageButton
+                android:padding="9dp"
+                android:background="#ffffff"
+                android:scaleType="fitCenter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/headerFavoriteStoreBtn"
-                android:background="@drawable/star"
+                android:id="@+id/headerFavoriteThingsBtn"
+                android:src="@drawable/star"
                 android:layout_margin="5dp"
                 android:layout_weight="1.5"/>
-
-
         </LinearLayout>
+
         <ScrollView
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -53,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6" />
                 <LinearLayout
+                    android:padding="20dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -63,22 +74,43 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
+                        <LinearLayout
+                            android:layout_weight="8.5"
+                            android:orientation="vertical"
                             android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="8"
-                            android:text="사장님 한마디"
-                            android:textSize="20dp"
-                            android:gravity="center_vertical"
-                            android:id="@+id/storesContent"/>
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="사장님 한마디"
+                                android:textSize="16dp"
+                                android:gravity="center_vertical"
+                               />
+                            <TextView
+                                android:textColor="#000000"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="8"
+                                android:text="사장님 한마디"
+                                android:textSize="15dp"
+                                android:gravity="center_vertical"
+                                android:id="@+id/storesContent"/>
+                        </LinearLayout>
+
                         <ImageButton
+                            android:padding="5dp"
+                            android:background="#ffffff"
+                            android:scaleType="fitStart"
                             android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="2"
-                            android:background="@drawable/star"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:src="@drawable/favorite"
                             android:id="@+id/storesLIke"/>
                     </LinearLayout>
                     <LinearLayout
+
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -88,6 +120,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
                             <TextView
+
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                android:textSize="15dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="업소통계"/>
@@ -96,11 +132,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_weight="5"
+                                    android:textColor="#000000"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="상품등록수"/>
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_weight="5"
+                                    android:textColor="#000000"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/storeThingsNum"
                                     android:text="20"/>
@@ -110,11 +150,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_weight="5"
+                                    android:textColor="#000000"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="즐겨찾기"/>
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_weight="5"
+                                    android:textColor="#000000"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/storeFavoriteNum"
                                     android:text="135"/>
@@ -126,6 +170,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
                             <TextView
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                android:textColor="#000000"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="영업정보"/>
@@ -134,10 +181,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="영업시간"/>
                                 <TextView
+                                    android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/storeTime"
@@ -148,10 +197,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="휴무일"/>
                                 <TextView
+                                    android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/storeBreakTime"
@@ -162,10 +213,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="문의"/>
                                 <TextView
+                                    android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/storePhoneNum"
@@ -179,10 +232,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp">
                         <TextView
+                            android:textColor="#000000"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="지도"/>
                         <TextView
+                            android:textColor="#000000"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:background="#263dc1"/>
