@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ItemInfoActivity extends Activity{
 
@@ -24,12 +26,20 @@ public class ItemInfoActivity extends Activity{
     ArrayList<String> imageList;
     CarouselView carouselView;
     Context context;
+    ImageButton thingsLIke;
+    ArrayList<String> likeItems;
+    SharedPreferencesHelper sharedPreferencesHelper;
+    boolean checkAddLike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
         context=this;
+
+        sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
+        // 즐겨찾기목록을 가져옴
+        likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
         Display mDisplay = getWindowManager().getDefaultDisplay();
@@ -48,6 +58,18 @@ public class ItemInfoActivity extends Activity{
         thingsPrice.setText(String.valueOf(item.getPrice()));
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
         thingsTag.setText(String.valueOf(item.getTag()));
+        thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
+        //TODO 즐겨찾기에 추가유무에 따라서 토글 되야됨. 이아디가 추가되있으면
+
+        if (likeItems.contains(String.valueOf(item.getId()))) {
+            checkAddLike = true;
+            thingsLIke.setImageResource(R.drawable.like_clicked);
+        } else {
+            checkAddLike = false;
+            thingsLIke.setImageResource(R.drawable.like);
+        }
+
+        thingsLIke.setOnClickListener(mClickListener);
 
         carouselView = (CarouselView) findViewById(R.id.thingsImage);
         carouselView.setPageCount(imageList.size());
@@ -76,6 +98,19 @@ public class ItemInfoActivity extends Activity{
             switch (v.getId()) {
                 case R.id.backBtn:
                     finish();
+                    break;
+                case R.id.thingsLIke:
+                    //TODO 즐겨찾기 추가
+                    if (!checkAddLike) {
+                        checkAddLike = true;
+                        likeItems.add(String.valueOf(item.getId()));
+                        thingsLIke.setImageResource(R.drawable.like_clicked);
+                    } else {
+                        checkAddLike = false;
+                        likeItems.remove(String.valueOf(item.getId()));
+                        thingsLIke.setImageResource(R.drawable.like);
+                    }
+                    sharedPreferencesHelper.setStringArrayPref(context, "likeItems", likeItems);
                     break;
             }
         }
