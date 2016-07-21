@@ -33,11 +33,21 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+
             android:textColor="#000000"
             android:singleLine = "true"
             android:id="@+id/listStoreContent"
             android:text="여기와서 보세" />
+<<<<<<< HEAD
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#000000"
+            android:text="여기와서 보세"/>
+        <!-- android:textAppearance="?android:attr/textAppearanceLarge" -->
+=======
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -56,6 +66,7 @@
                 android:id="@+id/listStoreFavoriteNum"
                 android:text="60"/>
         </LinearLayout>
+>>>>>>> 4c73f05167eb08c8dc7d7cf43ea0fa5393fd043c
 
     </LinearLayout>
 </LinearLayout>
