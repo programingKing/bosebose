@@ -38,7 +38,7 @@ public class LoadingActivity extends Activity {
                 .build();
 
         networkService = retrofit.create(NetworkService.class);
-        storeCall = networkService.getStore("aaa","bbb");
+        storeCall = networkService.getStore("전체","최신순");
         storeCall.enqueue(new Callback<List<Store>>() {
             @Override
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {

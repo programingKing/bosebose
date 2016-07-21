@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,14 +13,23 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyPagerAdapter extends PagerAdapter {
 
     ArrayList<Item> itemList;
     ArrayList<Store> storeList;
-
+    String category = "전체";
+    String order ="최신순";
+    MyListAdapter storesAdapter;
+    MyAdapter thingsAdapter;
 
     LayoutInflater mInflater;
     Context context;
@@ -45,7 +55,7 @@ public class MyPagerAdapter extends PagerAdapter {
             v = mInflater.inflate(R.layout.main_grid_items, null);
             v.findViewById(R.id.mainGridViewThings);
 
-            MyAdapter thingsAdapter = new MyAdapter (context, R.layout.things_item, itemList, context.getResources().getDisplayMetrics().widthPixels);
+            thingsAdapter = new MyAdapter (context, R.layout.things_item, itemList, context.getResources().getDisplayMetrics().widthPixels);
             GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)v.findViewById(R.id.mainGridViewThings);
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             View headerView = layoutInflater.inflate(R.layout.main_grid_items_header, null);
@@ -69,7 +79,7 @@ public class MyPagerAdapter extends PagerAdapter {
             v = mInflater.inflate(R.layout.main_grid_stores, null);
             v.findViewById(R.id.mainGridViewStores);
 
-            MyListAdapter storesAdapter = new MyListAdapter(context, R.layout.stores_item, storeList, context.getResources().getDisplayMetrics().widthPixels);
+            storesAdapter = new MyListAdapter(context, R.layout.stores_item, storeList, context.getResources().getDisplayMetrics().widthPixels);
             ListView lvStores = (ListView)v.findViewById(R.id.mainGridViewStores);
             lvStores.setAdapter(storesAdapter);
             lvStores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,14 +101,18 @@ public class MyPagerAdapter extends PagerAdapter {
     AdapterView.OnItemSelectedListener mGetItemClickListener = new AdapterView.OnItemSelectedListener() {
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             Object item = parent.getItemAtPosition(pos);
+
             switch (parent.getId()) {
                 case R.id.selectCategorie:
+                    category = item.toString();
+                    break;
                 case R.id.selectFilter:
-                    System.out.println(item);
-                    //TODO header의 값 가져오기
-                    //여기서 그 카테고리나 필터의 값을 가져오는데 이값을 기준으로 리스트를 최신화 하면 됩니다
+                    order = item.toString();
                     break;
             }
+
+            getItem(category,order);
+            Log.i("lsw",category +" "+ order);
         }
         public void onNothingSelected(AdapterView<?> parent) {
             //TODO
@@ -119,4 +133,31 @@ public class MyPagerAdapter extends PagerAdapter {
     @Override public Parcelable saveState() { return null; }
     @Override public void startUpdate(View arg0) {}
     @Override public void finishUpdate(View arg0) {}
+
+    public void getItem(String category, String order){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(NetworkService.SERVICE_URL)
+                .build();
+
+        Call<List<Item>> callback;
+        final NetworkService service = retrofit.create(NetworkService.class);
+        callback = service.getClothes(category,order);
+        callback.enqueue(new Callback<List<Item>>() {
+            @Override
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                ArrayList<Item> itemList = new ArrayList<>();
+                itemList.addAll(response.body());
+                thingsAdapter.renewItem(itemList);
+                thingsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Item>> call, Throwable t) {
+                Log.i("lsw","call error:"+t.getMessage());
+            }
+        });
+    }
 }
+
