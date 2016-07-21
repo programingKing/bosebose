@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,17 @@ import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemInfoActivity extends Activity{
 
@@ -47,6 +57,7 @@ public class ItemInfoActivity extends Activity{
         item = (Item)getIntent().getExtras().getSerializable("item");
         imageList = getImageList(item);
 
+        addHit(item.getId()); // 조회수 증가
 
         TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
         thingsStoreName.setText(String.valueOf(item.getStoreName()));
@@ -115,6 +126,31 @@ public class ItemInfoActivity extends Activity{
             }
         }
     };
+
+    public void addHit(int id){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(NetworkService.SERVICE_URL)
+                .build();
+
+        final NetworkService service = retrofit.create(NetworkService.class);
+        Call<ResponseBody> callback = service.addHit(Integer.toString(id));
+        callback.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("lsw","response success");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("lsw","error:"+t.getMessage());
+
+            }
+        });
+
+
+    }
 
     public static ArrayList<String> getImageList(Item item){
 

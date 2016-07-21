@@ -68,23 +68,6 @@ public class StoreInfoActivity extends Activity {
         TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
         storePhoneNum.setText(String.valueOf(store.getHit()));
 
-/*
-        findViewById(R.id.backBtn).setOnClickListener(mClickListener);
-
-        Display mDisplay = getWindowManager().getDefaultDisplay();
-        //Intent intent = getIntent();
-        store  = (Store) getIntent().getExtras().getSerializable("item");
-        imageList = getImageList(store);
-
-        carouselView = (CarouselView) findViewById(R.id.storeImage);
-        carouselView.setPageCount(imageList.size());
-        ViewGroup.LayoutParams params = carouselView.getLayoutParams();
-
-        //carousel의 높이를 가로의 길이로 받아와서 1:1로 비율잡습니다.
-        params.height = mDisplay.getWidth();
-        carouselView.setLayoutParams(params);
-        carouselView.setImageListener(imageListener);
-        */
     }
 
     //이미지를 뿌려줍니다.

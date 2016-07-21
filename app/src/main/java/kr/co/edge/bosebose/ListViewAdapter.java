@@ -62,7 +62,6 @@ class MyListAdapter extends BaseAdapter {
         listStoreContent.setText(storeList.get(position).getIntroduction());
         listStoreFavoriteNum.setText(String.valueOf(storeList.get(position).getHit()));
 
-        Log.i("lsw",storeList.get(position).getImage());
         Picasso.with(context)
                 .load(storeList.get(position).getImage())
                 .fit()
