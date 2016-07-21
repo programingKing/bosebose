@@ -13,64 +13,20 @@ public class Store implements Serializable {
     private String name;
     private String address;
     private String introduction;
+    private int itemCount;
+    private int favoriteCount;
+    private String businessHour;
+    private String holiday;
     private String image;
     private String locationX;
     private String locationY;
 
-    public int getId() {
-        return id;
+    public String getLocationY() {
+        return locationY;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(String regDate) {
-        this.regDate = regDate;
-    }
-
-    public int getHit() {
-        return hit;
-    }
-
-    public void setHit(int hit) {
-        this.hit = hit;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setLocationY(String locationY) {
+        this.locationY = locationY;
     }
 
     public String getLocationX() {
@@ -81,11 +37,91 @@ public class Store implements Serializable {
         this.locationX = locationX;
     }
 
-    public String getLocationY() {
-        return locationY;
+    public String getImage() {
+        return image;
     }
 
-    public void setLocationY(String locationY) {
-        this.locationY = locationY;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getHoliday() {
+        return holiday;
+    }
+
+    public void setHoliday(String holiday) {
+        this.holiday = holiday;
+    }
+
+    public String getBusinessHour() {
+        return businessHour;
+    }
+
+    public void setBusinessHour(String businessHour) {
+        this.businessHour = businessHour;
+    }
+
+    public int getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    public void setFavoriteCount(int favoriteCount) {
+        this.favoriteCount = favoriteCount;
+    }
+
+    public int getItemCount() {
+        return itemCount;
+    }
+
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHit() {
+        return hit;
+    }
+
+    public void setHit(int hit) {
+        this.hit = hit;
+    }
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
