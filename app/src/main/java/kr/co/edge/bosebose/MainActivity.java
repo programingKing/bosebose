@@ -9,19 +9,24 @@ import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
-
 public class MainActivity extends Activity {
     Intent i;
+    private ImageButton seeHeaderThings;
+    private ImageButton seeHeaderStores;
+    private ImageButton tab_store;
+    private ImageButton tab_product;
     private ViewPager mPager;
     ArrayList<Item> itemList;
     ArrayList<Store> storeList;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tab_product=(ImageButton)findViewById(R.id.tab_product);
+        tab_product.setImageResource(R.drawable.tap_product);
+        tab_store=(ImageButton) findViewById(R.id.tab_store);
 
         itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
@@ -34,8 +39,36 @@ public class MainActivity extends Activity {
         findViewById(R.id.headerFavoriteStoreBtn).setOnClickListener(mClickListener);
         findViewById(R.id.headerFavoriteThingsBtn).setOnClickListener(mClickListener);
         findViewById(R.id.headerSearchBtn).setOnClickListener(mClickListener);
-        findViewById(R.id.secHeaderThings).setOnClickListener(mClickListener);
-        findViewById(R.id.secHeaderStores).setOnClickListener(mClickListener);
+        seeHeaderThings = (ImageButton) findViewById(R.id.secHeaderThings);
+        seeHeaderThings.setOnClickListener(mClickListener);
+        seeHeaderStores=(ImageButton)findViewById(R.id.secHeaderStores);
+        seeHeaderStores.setOnClickListener(mClickListener);
+
+        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        seeHeaderThings.setImageResource(R.drawable.product_clicked);
+                        seeHeaderStores.setImageResource(R.drawable.store);
+                        tab_product.setImageResource(R.drawable.tap_product);
+                        tab_store.setImageResource(R.drawable.tap);
+                        break;
+                    case 1:
+                        seeHeaderThings.setImageResource(R.drawable.product);
+                        seeHeaderStores.setImageResource(R.drawable.store_clicked);
+                        tab_product.setImageResource(R.drawable.tap);
+                        tab_store.setImageResource(R.drawable.tap_store);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
     ImageButton.OnClickListener mClickListener = new View.OnClickListener() {
@@ -67,5 +100,6 @@ public class MainActivity extends Activity {
             }
         }
     };
+
 
 }

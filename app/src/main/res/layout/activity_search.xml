@@ -50,7 +50,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#0e77d2">
+            android:background="#ffffff">
 
             <ListView
                 android:layout_width="match_parent"

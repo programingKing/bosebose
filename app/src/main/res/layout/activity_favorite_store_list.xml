@@ -14,26 +14,35 @@
             android:background="#ffffff">
 
             <ImageButton
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
-                android:background="@drawable/back"
-                android:layout_weight="1.5"/>
+                android:src="@drawable/backbutton"
+                android:layout_weight="0.8"/>
 
             <TextView
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"/>
+                android:id="@+id/storeName"
+                android:text="hello"
+                android:layout_weight="7.7"/>
 
             <ImageButton
+                android:padding="9dp"
+                android:background="#ffffff"
+                android:scaleType="fitCenter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headerFavoriteStoreBtn"
-                android:background="@drawable/star"
+                android:src="@drawable/star"
                 android:layout_margin="5dp"
                 android:layout_weight="1.5"/>
-
-
         </LinearLayout>
 
         <LinearLayout
