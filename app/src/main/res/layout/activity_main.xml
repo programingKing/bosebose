@@ -6,10 +6,12 @@
     tools:context="kr.co.edge.bosebose.MainActivity">
 
     <LinearLayout
+        android:background="#d0cece"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:layout_marginBottom="1dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -23,20 +25,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/headerMainLogoBtn"
-                android:layout_weight="4"/>
+                android:layout_weight="6.7"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.7"
-                />
+
 
             <ImageButton
                 android:scaleType="fitCenter"
                 android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/headerFavoriteStoreBtn"
+                android:id="@+id/headerFavoriteThingsBtn"
                 android:src="@drawable/heart"
                 android:padding="9dp"
                 android:layout_weight="1.1"/>
@@ -46,7 +44,7 @@
                 android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/headerFavoriteThingsBtn"
+                android:id="@+id/headerFavoriteStoreBtn"
                 android:src="@drawable/start"
                 android:padding="9dp"
                 android:layout_weight="1.1"/>

@@ -23,7 +23,7 @@
                 android:layout_weight="0.8"/>
 
             <EditText
-                android:hint="hello"
+                android:background="@drawable/search_bar"
                 android:singleLine="true"
                 android:textColor="#000000"
                 android:textSize="20dp"
@@ -31,7 +31,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/searchKeyword"
-                android:text="hello"
                 android:layout_weight="7.7"/>
 
             <ImageButton

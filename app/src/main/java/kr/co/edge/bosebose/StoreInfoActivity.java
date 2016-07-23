@@ -2,15 +2,9 @@ package kr.co.edge.bosebose;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +13,6 @@ import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import java.net.URI;
 import java.util.ArrayList;
 
 public class StoreInfoActivity extends Activity {
@@ -81,10 +74,10 @@ public class StoreInfoActivity extends Activity {
         storeLike = (ImageButton)findViewById(R.id.storesLIke);
         if (likeStores.contains(String.valueOf(store.getId()))) {
             checkAddLike = true;
-            storeLike.setImageResource(R.drawable.like_clicked);
+            storeLike.setImageResource(R.drawable.favorite_click);
         } else {
             checkAddLike = false;
-            storeLike.setImageResource(R.drawable.like);
+            storeLike.setImageResource(R.drawable.favorite);
         }
         storeLike.setOnClickListener(mClickListener);
 
@@ -111,11 +104,11 @@ public class StoreInfoActivity extends Activity {
                     if (!checkAddLike) {
                         checkAddLike = true;
                         likeStores.add(String.valueOf(store.getId()));
-                        storeLike.setImageResource(R.drawable.like_clicked);
+                        storeLike.setImageResource(R.drawable.favorite);
                     } else {
                         checkAddLike = false;
                         likeStores.remove(String.valueOf(store.getId()));
-                        storeLike.setImageResource(R.drawable.like);
+                        storeLike.setImageResource(R.drawable.favorite_click);
                     }
                     sharedPreferencesHelper.setStringArrayPref(context, "likeStores", likeStores);
                     break;
