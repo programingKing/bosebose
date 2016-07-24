@@ -24,6 +24,7 @@
 
             <EditText
                 android:hint="상품 검색"
+                android:background="@drawable/search_bar"
                 android:singleLine="true"
                 android:textColor="#000000"
                 android:textSize="20dp"
@@ -49,7 +50,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#0e77d2">
+            android:background="#ffffff">
 
             <in.srain.cube.views.GridViewWithHeaderAndFooter
                 android:id="@+id/searchResultList"

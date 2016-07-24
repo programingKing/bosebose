@@ -12,16 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -65,8 +61,8 @@ public class ItemInfoActivity extends Activity{
         thingsStoreName.setText(String.valueOf(item.getStoreName()));
         TextView thingsTitle = (TextView)findViewById(R.id.thingsTitle);
         thingsTitle.setText(String.valueOf(item.getName()));
-        TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
-        thingsContent.setText(String.valueOf(item.getContent()));
+      //  TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
+      //  thingsContent.setText(String.valueOf(item.getContent()));
         TextView thingsPrice = (TextView)findViewById(R.id.thingsPrice);
         thingsPrice.setText(String.valueOf(item.getPrice()));
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);

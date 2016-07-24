@@ -6,7 +6,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -14,25 +15,24 @@
             android:background="#ffffff">
 
             <ImageButton
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
-                android:background="@drawable/back"
-                android:layout_weight="1.5"/>
+                android:src="@drawable/backbutton"
+                android:layout_weight="0.8"/>
 
             <TextView
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"/>
-
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/headerFavoriteStoreBtn"
-                android:background="@drawable/star"
-                android:layout_margin="5dp"
-                android:layout_weight="1.5"/>
-
+                android:id="@+id/storeName"
+                android:text="즐겨찾기 매장"
+                android:layout_weight="9.2"/>
 
         </LinearLayout>
 

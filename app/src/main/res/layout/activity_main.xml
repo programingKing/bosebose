@@ -6,37 +6,28 @@
     tools:context="kr.co.edge.bosebose.MainActivity">
 
     <LinearLayout
+        android:background="#d0cece"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:layout_marginBottom="1dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#ffffff">
 
-            <ImageButton
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
                 android:text="보세보세"
+                android:textSize="25dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/headerMainLogoBtn"
-                android:layout_weight="4"/>
+                android:layout_weight="6.7"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                />
 
-            <ImageButton
-                android:scaleType="fitCenter"
-                android:background="#ffffff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/headerFavoriteStoreBtn"
-                android:src="@drawable/heart"
-                android:padding="5dp"
-                android:layout_weight="1"/>
 
             <ImageButton
                 android:scaleType="fitCenter"
@@ -44,25 +35,36 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/headerFavoriteThingsBtn"
-                android:src="@drawable/start"
-                android:padding="5dp"
-                android:layout_weight="1"/>
+                android:src="@drawable/heart"
+                android:padding="9dp"
+                android:layout_weight="1.1"/>
 
             <ImageButton
                 android:scaleType="fitCenter"
                 android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/headerFavoriteStoreBtn"
+                android:src="@drawable/start"
+                android:padding="9dp"
+                android:layout_weight="1.1"/>
+
+            <ImageButton
+                android:layout_marginRight="5dp"
+                android:scaleType="fitCenter"
+                android:background="#ffffff"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/headerSearchBtn"
                 android:src="@drawable/search"
-                android:padding="5dp"
-                android:layout_weight="1"/>
+                android:padding="9dp"
+                android:layout_weight="1.1"/>
 
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="#ffffff">
 
             <ImageButton
@@ -72,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/secHeaderThings"
-                android:src="@drawable/product_"
+                android:src="@drawable/product_clicked"
                 android:layout_weight="1"/>
             <ImageButton
                 android:background="#ffffff"
@@ -85,11 +87,34 @@
                 android:layout_weight="1"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp">
+
+            <ImageButton
+                android:background="@drawable/tap"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_product"
+                />
+
+            <ImageButton
+                android:background="@drawable/tap"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_store" />
+        </LinearLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/mian_grid_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v4.view.ViewPager>
+
     </LinearLayout>
 
 
