@@ -7,12 +7,13 @@ import java.io.Serializable;
  */
 public class Item implements Serializable{
 
-    private int id;
+    public int id;
     private String regTime;
     private int hit;
     private String category;
     private String name;
     private String storeName;
+    public int storeID;
     private String content;
     private int price;
     private String image1;

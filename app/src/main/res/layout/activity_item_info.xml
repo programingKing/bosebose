@@ -155,6 +155,7 @@
                         android:id="@+id/thingsTag"
                         android:textSize="30dp"/>
                     <ImageButton
+                        android:id="@+id/btn_move_store"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:src="@drawable/move"

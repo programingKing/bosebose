@@ -8,35 +8,31 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
-
-import java.net.URI;
 import java.util.ArrayList;
 
 public class StoreInfoActivity extends Activity {
 
-    CarouselView carouselView;
+
     ImageView imageView;
     Context context;
-
     Store store;
-    ArrayList<String> imageList;
-
     ImageButton storeLike;
     ArrayList<String> likeStores;
     boolean checkAddLike;
     SharedPreferencesHelper sharedPreferencesHelper;
-
-   // int sampleImages [] =  {R.drawable.pic1,R.drawable.pic2, R.drawable.pic3, R.drawable.pic4 };
+    WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +74,18 @@ public class StoreInfoActivity extends Activity {
         TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
         storePhoneNum.setText(String.valueOf(store.getHit()));
 
+        webView= (WebView)findViewById(R.id.webview);
+        WebSettings webSettings=webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setVerticalScrollBarEnabled(true);
+        webView.setHorizontalScrollBarEnabled(true);
+        webView.setWebViewClient(new WebViewClientClass());
+        String url =
+                NetworkService.SERVICE_URL+"GetStoreMap.php"
+                        +"?lon="+store.getLocationX()+"&lat="+store.getLocationY()+"&storeName="+store.getName();
+        webView.loadUrl(url);
+
+
         storeLike = (ImageButton)findViewById(R.id.storesLIke);
         if (likeStores.contains(String.valueOf(store.getId()))) {
             checkAddLike = true;
@@ -87,17 +95,15 @@ public class StoreInfoActivity extends Activity {
             storeLike.setImageResource(R.drawable.like);
         }
         storeLike.setOnClickListener(mClickListener);
-
-
     }
 
-    //이미지를 뿌려줍니다.
-    ImageListener imageListener = new ImageListener() {
+    private class WebViewClientClass extends WebViewClient {
         @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-           // imageView.setImageResource(sampleImages[position]);
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
         }
-    };
+    }
 
     //백버튼 제어
     ImageButton.OnClickListener mClickListener = new View.OnClickListener() {
@@ -122,6 +128,7 @@ public class StoreInfoActivity extends Activity {
             }
         }
     };
+
 
 
 }
