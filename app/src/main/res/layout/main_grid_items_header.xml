@@ -9,19 +9,18 @@
         android:layout_height="wrap_content"
         android:background="#ffffff">
         <Spinner
-            android:layout_margin="3dp"
-
+            android:background="@drawable/spinner_background"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:id="@+id/selectCategorie"
             android:layout_weight="5"
             android:entries="@array/category"/>
         <Spinner
-            android:layout_margin="3dp"
 
+            android:background="@drawable/spinner_background"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:id="@+id/selectFilter"
             android:layout_weight="5"

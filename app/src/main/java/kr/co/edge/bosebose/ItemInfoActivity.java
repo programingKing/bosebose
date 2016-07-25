@@ -3,6 +3,7 @@ package kr.co.edge.bosebose;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -66,6 +67,9 @@ public class ItemInfoActivity extends Activity{
         thingsTag.setText(String.valueOf(item.getTag()));
         thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
         //TODO 즐겨찾기에 추가유무에 따라서 토글 되야됨. 이아디가 추가되있으면
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
+        thingsStoreName.setTypeface(typeface);
 
         if (likeItems.contains(String.valueOf(item.getId()))) {
             checkAddLike = true;

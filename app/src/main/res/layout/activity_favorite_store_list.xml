@@ -26,7 +26,7 @@
 
             <TextView
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -43,6 +43,7 @@
             android:background="#ffffff">
 
             <ListView
+                android:divider="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/favoriteStoreList"/>

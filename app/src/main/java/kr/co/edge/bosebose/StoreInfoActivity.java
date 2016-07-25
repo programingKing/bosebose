@@ -2,6 +2,7 @@ package kr.co.edge.bosebose;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
@@ -56,6 +57,7 @@ public class StoreInfoActivity extends Activity {
                 .centerCrop()
                 .into(imageView);
 
+
         TextView storeName = (TextView)findViewById(R.id.storeName);
         storeName.setText(String.valueOf(store.getName()));
         TextView storesContent = (TextView)findViewById(R.id.storesContent);
@@ -70,6 +72,9 @@ public class StoreInfoActivity extends Activity {
         storeBreakTime.setText(String.valueOf(store.getHoliday()));
         TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
         storePhoneNum.setText(String.valueOf(store.getHit()));
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
+        storeName.setTypeface(typeface);
 
         storeLike = (ImageButton)findViewById(R.id.storesLIke);
         if (likeStores.contains(String.valueOf(store.getId()))) {

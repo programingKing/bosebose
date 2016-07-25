@@ -3,11 +3,13 @@ package kr.co.edge.bosebose;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,9 +28,14 @@ public class FavoriteStoreListActivity extends Activity {
         setContentView(R.layout.activity_favorite_store_list);
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
 
+
         storeList = (ArrayList<Store>) getIntent().getSerializableExtra("storeList");
         likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
         likeStoreList = new ArrayList<Store>();
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
+        TextView textView=(TextView)findViewById(R.id.storeName);
+        textView.setTypeface(typeface);
 
         for (int i = 0, ii = likeStores.size(); i < ii ; i++) {
             for (int j = 0, jj = storeList.size(); j < jj ; j++) {

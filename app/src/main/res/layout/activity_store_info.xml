@@ -27,7 +27,7 @@
 
             <TextView
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="27dp"
                 android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -76,7 +76,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="사장님 한마디"
-                                android:textSize="16dp"
+                                android:textSize="15dp"
                                 android:gravity="center_vertical"
                                />
                             <TextView
@@ -111,7 +111,7 @@
                             <TextView
                                 android:textColor="#000000"
                                 android:textStyle="bold"
-                                android:textSize="15dp"
+                                android:textSize="14dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="업소통계"/>
@@ -120,12 +120,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textSize="15dp"
                                     android:layout_weight="5"
                                     android:textColor="#000000"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="상품등록수"/>
                                 <TextView
+                                    android:textSize="15dp"
                                     android:layout_weight="5"
                                     android:textColor="#000000"
                                     android:layout_width="0dp"
@@ -138,12 +140,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textSize="15dp"
                                     android:layout_weight="5"
                                     android:textColor="#000000"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="즐겨찾기"/>
                                 <TextView
+                                    android:textSize="15dp"
                                     android:layout_weight="5"
                                     android:textColor="#000000"
                                     android:layout_width="0dp"
@@ -159,7 +163,7 @@
                             android:layout_weight="1">
                             <TextView
                                 android:textStyle="bold"
-                                android:textSize="15dp"
+                                android:textSize="14dp"
                                 android:textColor="#000000"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -169,11 +173,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textSize="15dp"
                                     android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="영업시간"/>
                                 <TextView
+                                    android:textSize="15dp"
                                     android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -185,11 +191,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textSize="15dp"
                                     android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="휴무일"/>
                                 <TextView
+                                    android:textSize="15dp"
                                     android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -201,11 +209,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:textSize="15dp"
                                     android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="문의"/>
                                 <TextView
+                                    android:textSize="15dp"
                                     android:textColor="#000000"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -219,16 +229,36 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="200dp">
-                        <TextView
-                            android:textColor="#000000"
+
+                        <LinearLayout
+                            android:weightSum="10"
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="지도"/>
-                        <WebView
-                            android:id="@+id/webview"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"></WebView>
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:src="@drawable/map"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="16dp"
+                                android:id="@+id/imageView" />
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                android:layout_weight="9"
+                                android:textColor="#000000"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="지도"/>
+
+                        </LinearLayout>
                     </LinearLayout>
+
+                    <WebView
+                        android:id="@+id/webview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></WebView>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

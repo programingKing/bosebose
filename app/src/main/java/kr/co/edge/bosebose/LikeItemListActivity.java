@@ -1,12 +1,13 @@
 package kr.co.edge.bosebose;
 
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,12 @@ public class LikeItemListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_item_list);
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
+
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
+        TextView textView=(TextView)findViewById(R.id.storeName);
+        textView.setTypeface(typeface);
+
 
         itemList = (ArrayList<Item>) getIntent().getSerializableExtra("itemList");
         likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
