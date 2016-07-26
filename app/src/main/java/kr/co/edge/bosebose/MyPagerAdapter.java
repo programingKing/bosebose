@@ -2,6 +2,7 @@ package kr.co.edge.bosebose;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,9 @@ public class MyPagerAdapter extends PagerAdapter {
             View headerView = layoutInflater.inflate(R.layout.main_grid_items_header, null);
             Spinner headerCategorie = (Spinner)headerView.findViewById(R.id.selectCategorie);
             Spinner headerFilter = (Spinner)headerView.findViewById(R.id.selectFilter);
+
+
+
             headerCategorie.setOnItemSelectedListener(mGetItemClickListener);
             headerFilter.setOnItemSelectedListener(mGetItemClickListener);
             gvThings.addHeaderView(headerView);
@@ -115,9 +120,13 @@ public class MyPagerAdapter extends PagerAdapter {
             switch (parent.getId()) {
                 case R.id.selectCategorie:
                     category = item.toString();
+                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
+                    ((TextView)parent.getChildAt(0)).setTextSize(13);
                     break;
                 case R.id.selectFilter:
                     order = item.toString();
+                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
+                    ((TextView)parent.getChildAt(0)).setTextSize(13);
                     break;
             }
 

@@ -4,11 +4,13 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:weightSum="10"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f0f0f0">
         <Spinner
+            android:layout_margin="3dp"
             android:background="@drawable/spinner_background"
             android:layout_width="0dp"
             android:layout_height="25dp"
@@ -17,6 +19,7 @@
             android:layout_weight="5"
             android:entries="@array/category"/>
         <Spinner
+            android:layout_margin="3dp"
             android:background="@drawable/spinner_background"
             android:layout_width="0dp"
             android:layout_height="25dp"

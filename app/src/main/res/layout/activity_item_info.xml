@@ -66,7 +66,8 @@
                     <LinearLayout
                         android:background="#ffffff"
                         android:layout_marginBottom="1dp"
-                        android:padding="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -95,55 +96,52 @@
 
                     <LinearLayout
                         android:layout_marginTop="12dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="20dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:padding="6dp"
+                            android:paddingBottom="3dp"
+                            android:paddingTop="3dp"
                             android:src="@drawable/price"
                             android:gravity="center_vertical"
-                        android:layout_weight="1.5"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:text="￦"
-                        android:textSize="20dp"/>
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp" />
                         <TextView
                             android:textColor="#000000"
                             android:gravity="center_vertical"
-                        android:layout_weight="8.5"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:text="hello"
-                        android:id="@+id/thingsPrice"
-                        android:textSize="20dp"/>
+                            android:layout_weight="9"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:text="hello"
+                            android:id="@+id/thingsPrice"
+                            android:textSize="17dp"/>
                         </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:padding="6dp"
+                            android:paddingBottom="3dp"
+                            android:paddingTop="3dp"
                             android:src="@drawable/things"
                             android:gravity="center_vertical"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:textSize="20dp"/>
+                            android:layout_height="20dp" />
                         <TextView
                             android:layout_marginBottom="20dp"
                             android:textColor="#000000"
                             android:gravity="center_vertical"
-                            android:layout_weight="8.5"
+                            android:layout_weight="9"
                             android:layout_width="0dp"
-                            android:layout_height="30dp"
+                            android:layout_height="20dp"
                             android:text="hello"
                             android:id="@+id/thingsTag"
-                            android:textSize="20dp"/>
+                            android:textSize="17dp"/>
                     </LinearLayout>
 
                     <ImageButton

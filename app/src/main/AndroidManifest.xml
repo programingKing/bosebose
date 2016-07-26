@@ -15,7 +15,7 @@
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".ItemInfoActivity"></activity>
         <activity android:name=".StoreInfoActivity"></activity>
-        <activity android:name=".LoadingActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity android:name=".LoadingActivity" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
