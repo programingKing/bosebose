@@ -4,8 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
-
+    android:background="#f0f0f0">
 
     <ImageView
         android:layout_width="0dp"
@@ -14,12 +13,12 @@
         android:layout_weight="5"
         android:id="@+id/storesImagePreview" />
     <LinearLayout
-        android:layout_margin="20dp"
+        android:padding="20dp"
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:background="#00ffffff">
+        android:background="#ffffff">
 
         <TextView
             android:textStyle="bold"

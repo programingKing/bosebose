@@ -6,6 +6,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +32,7 @@ public class StoreInfoActivity extends Activity {
     ArrayList<String> likeStores;
     boolean checkAddLike;
     SharedPreferencesHelper sharedPreferencesHelper;
-
+    private WebView webView;
    // int sampleImages [] =  {R.drawable.pic1,R.drawable.pic2, R.drawable.pic3, R.drawable.pic4 };
 
     @Override
@@ -57,6 +60,13 @@ public class StoreInfoActivity extends Activity {
                 .centerCrop()
                 .into(imageView);
 
+        webView=(WebView)findViewById(R.id.webview);
+        WebSettings webSettings=webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setWebViewClient(new WebViewClientClass());
+       // webView.loadUrl("http://192.168.43.102/daumapi.php");
 
         TextView storeName = (TextView)findViewById(R.id.storeName);
         storeName.setText(String.valueOf(store.getName()));
@@ -87,6 +97,14 @@ public class StoreInfoActivity extends Activity {
         storeLike.setOnClickListener(mClickListener);
 
 
+    }
+
+    private class WebViewClientClass extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
     }
 
     //이미지를 뿌려줍니다.

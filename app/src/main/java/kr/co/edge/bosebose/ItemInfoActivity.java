@@ -69,7 +69,12 @@ public class ItemInfoActivity extends Activity{
         //TODO 즐겨찾기에 추가유무에 따라서 토글 되야됨. 이아디가 추가되있으면
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
+        Typeface godic = Typeface.createFromAsset(getAssets(),"NotoSans-Regular.ttf");
+        Typeface boldgodic = Typeface.createFromAsset(getAssets(),"NotoSans-Bold.ttf");
         thingsStoreName.setTypeface(typeface);
+        thingsTitle.setTypeface(boldgodic);
+        thingsPrice.setTypeface(godic);
+        thingsTag.setTypeface(godic);
 
         if (likeItems.contains(String.valueOf(item.getId()))) {
             checkAddLike = true;
