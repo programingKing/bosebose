@@ -68,8 +68,18 @@ public class MyPagerAdapter extends PagerAdapter {
             gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Store sStore =null;
+                    Item sItem = itemList.get(position);
+                    for(Store store : storeList ) {
+                        if (store.id == sItem.storeID) {
+                            sStore = store;
+                            break;
+                        }
+                    }
                     Intent i = new Intent(context, ItemInfoActivity.class);
-                    i.putExtra("item",itemList.get(position));
+                    i.putExtra("item", sItem);
+                    i.putExtra("store",sStore);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }

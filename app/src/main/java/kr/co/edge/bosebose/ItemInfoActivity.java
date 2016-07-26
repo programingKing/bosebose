@@ -4,6 +4,7 @@ package kr.co.edge.bosebose;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -29,6 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ItemInfoActivity extends Activity{
 
     Item item;
+    Store store;
     ArrayList<String> imageList;
     CarouselView carouselView;
     Context context;
@@ -48,11 +50,12 @@ public class ItemInfoActivity extends Activity{
         likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
+        findViewById(R.id.btn_move_store).setOnClickListener(mClickListener);
         Display mDisplay = getWindowManager().getDefaultDisplay();
 
+        store = (Store)getIntent().getExtras().getSerializable("store");
         item = (Item)getIntent().getExtras().getSerializable("item");
         imageList = getImageList(item);
-
         addHit(item.getId()); // 조회수 증가
 
         TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
@@ -114,6 +117,11 @@ public class ItemInfoActivity extends Activity{
                 case R.id.backBtn:
                     finish();
                     break;
+                case R.id.btn_move_store:
+                    Intent intent = new Intent(ItemInfoActivity.this, StoreInfoActivity.class);
+                    intent.putExtra("store",store);
+                    startActivity(intent);
+                    break;
                 case R.id.thingsLIke:
                     //TODO 즐겨찾기 추가
                     if (!checkAddLike) {
@@ -152,8 +160,6 @@ public class ItemInfoActivity extends Activity{
 
             }
         });
-
-
     }
 
     public static ArrayList<String> getImageList(Item item){
@@ -174,4 +180,6 @@ public class ItemInfoActivity extends Activity{
         }
         return imageList;
     }
+
+
 }

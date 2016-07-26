@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Store implements Serializable {
 
-    private int id;
+    public int id;
     private String regDate;
     private int hit;
     private String name;

@@ -44,9 +44,6 @@ public class LoadingActivity extends Activity {
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
                 storeList = new ArrayList<>();
                 storeList.addAll(response.body());
-                for(Store item : storeList){
-                    Log.i("lsw",item.getImage());
-                }
 
                clothesCall = networkService.getClothes("aaa","bbb");
                 clothesCall.enqueue(new Callback<List<Item>>() {
@@ -54,9 +51,7 @@ public class LoadingActivity extends Activity {
                     public void onResponse(Call<List<Item>> call, retrofit2.Response<List<Item>> response) {
                         itemList = new ArrayList<>();
                         itemList.addAll(response.body());
-                        for(Item item : itemList){
-                            Log.i("lsw",item.getImage1());
-                        }
+
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.putExtra("itemList",itemList);
                         intent.putExtra("storeList",storeList);

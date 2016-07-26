@@ -14,26 +14,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
 public class StoreInfoActivity extends Activity {
 
-    CarouselView carouselView;
+
     ImageView imageView;
     Context context;
-
     Store store;
-    ArrayList<String> imageList;
-
     ImageButton storeLike;
     ArrayList<String> likeStores;
     boolean checkAddLike;
     SharedPreferencesHelper sharedPreferencesHelper;
-    private WebView webView;
-   // int sampleImages [] =  {R.drawable.pic1,R.drawable.pic2, R.drawable.pic3, R.drawable.pic4 };
+    WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +54,7 @@ public class StoreInfoActivity extends Activity {
                 .centerCrop()
                 .into(imageView);
 
-        webView=(WebView)findViewById(R.id.webview);
+        webView = (WebView)findViewById(R.id.webview);
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.setVerticalScrollBarEnabled(false);
@@ -85,7 +79,15 @@ public class StoreInfoActivity extends Activity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         storeName.setTypeface(typeface);
-
+        webView= (WebView)findViewById(R.id.webview);
+        webSettings.setJavaScriptEnabled(true);
+        webView.setVerticalScrollBarEnabled(true);
+        webView.setHorizontalScrollBarEnabled(true);
+        webView.setWebViewClient(new WebViewClientClass());
+        String url =
+                NetworkService.SERVICE_URL+"GetStoreMap.php"
+                        +"?lon="+store.getLocationX()+"&lat="+store.getLocationY()+"&storeName="+store.getName();
+        webView.loadUrl(url);
         storeLike = (ImageButton)findViewById(R.id.storesLIke);
         if (likeStores.contains(String.valueOf(store.getId()))) {
             checkAddLike = true;
@@ -95,8 +97,6 @@ public class StoreInfoActivity extends Activity {
             storeLike.setImageResource(R.drawable.favorite);
         }
         storeLike.setOnClickListener(mClickListener);
-
-
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -106,14 +106,6 @@ public class StoreInfoActivity extends Activity {
             return true;
         }
     }
-
-    //이미지를 뿌려줍니다.
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-           // imageView.setImageResource(sampleImages[position]);
-        }
-    };
 
     //백버튼 제어
     ImageButton.OnClickListener mClickListener = new View.OnClickListener() {
@@ -138,6 +130,7 @@ public class StoreInfoActivity extends Activity {
             }
         }
     };
+
 
 
 }
