@@ -77,6 +77,16 @@ public class StoreInfoActivity extends Activity {
         TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
         storePhoneNum.setText(String.valueOf(store.getHit()));
 
+        storeLike = (ImageButton)findViewById(R.id.storesLIke);
+        if (likeStores.contains(String.valueOf(store.getId()))) {
+            checkAddLike = true;
+            storeLike.setImageResource(R.drawable.favorite_click);
+        } else {
+            checkAddLike = false;
+            storeLike.setImageResource(R.drawable.favorite);
+        }
+        storeLike.setOnClickListener(mClickListener);
+
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         storeName.setTypeface(typeface);
         webView= (WebView)findViewById(R.id.webview);
@@ -88,15 +98,6 @@ public class StoreInfoActivity extends Activity {
                 NetworkService.SERVICE_URL+"GetStoreMap.php"
                         +"?lon="+store.getLocationX()+"&lat="+store.getLocationY()+"&storeName="+store.getName();
         webView.loadUrl(url);
-        storeLike = (ImageButton)findViewById(R.id.storesLIke);
-        if (likeStores.contains(String.valueOf(store.getId()))) {
-            checkAddLike = true;
-            storeLike.setImageResource(R.drawable.favorite_click);
-        } else {
-            checkAddLike = false;
-            storeLike.setImageResource(R.drawable.favorite);
-        }
-        storeLike.setOnClickListener(mClickListener);
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -107,7 +108,6 @@ public class StoreInfoActivity extends Activity {
         }
     }
 
-    //백버튼 제어
     ImageButton.OnClickListener mClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
@@ -119,11 +119,11 @@ public class StoreInfoActivity extends Activity {
                     if (!checkAddLike) {
                         checkAddLike = true;
                         likeStores.add(String.valueOf(store.getId()));
-                        storeLike.setImageResource(R.drawable.favorite);
+                        storeLike.setImageResource(R.drawable.favorite_click);
                     } else {
                         checkAddLike = false;
                         likeStores.remove(String.valueOf(store.getId()));
-                        storeLike.setImageResource(R.drawable.favorite_click);
+                        storeLike.setImageResource(R.drawable.favorite);
                     }
                     sharedPreferencesHelper.setStringArrayPref(context, "likeStores", likeStores);
                     break;
