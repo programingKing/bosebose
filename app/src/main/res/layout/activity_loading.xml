@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     tools:context="kr.co.edge.bosebose.LoadingActivity"
     android:background="#fa8d74">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/loading_img2"
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/loading_img"
         />
 </RelativeLayout>
