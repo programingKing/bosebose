@@ -92,10 +92,12 @@ public class MainActivity extends Activity {
                 case R.id.headerFavoriteThingsBtn:
                     i = new Intent(MainActivity.this, LikeItemListActivity.class);
                     i.putExtra("itemList", itemList);
+                    i.putExtra("storeList",storeList);
                     startActivity(i);
                     break;
                 case R.id.headerSearchBtn:
                     i = new Intent(MainActivity.this, SearchActivity.class);
+                    i.putExtra("storeList",storeList);
                     startActivity(i);
                     break;
                 case R.id.secHeaderThings:

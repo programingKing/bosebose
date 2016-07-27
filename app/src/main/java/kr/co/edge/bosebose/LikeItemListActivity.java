@@ -24,6 +24,7 @@ public class LikeItemListActivity extends Activity {
 
     ArrayList<String> likeItems;
     ArrayList<Item> likeItemList;
+    ArrayList<Store> storeList;
     MyAdapter thingsAdapter;
 
     SharedPreferencesHelper sharedPreferencesHelper;
@@ -34,6 +35,7 @@ public class LikeItemListActivity extends Activity {
         setContentView(R.layout.activity_like_item_list);
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
 
+        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         TextView textView=(TextView)findViewById(R.id.storeName);
@@ -49,8 +51,18 @@ public class LikeItemListActivity extends Activity {
         gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Store sStore =null;
+                Item sItem = likeItemList.get(position);
+                for(Store store : storeList ) {
+                    if (store.id == sItem.storeID) {
+                        sStore = store;
+                        break;
+                    }
+                }
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
-                i.putExtra("item",likeItemList.get(position));
+                i.putExtra("item",sItem);
+                i.putExtra("store",sStore);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }

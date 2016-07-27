@@ -26,12 +26,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SearchActivity extends Activity {
     EditText searchKeyword;
     ArrayList<Item> searchItemList;
+    ArrayList<Store> storeList;
     MyAdapter myGridViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
 
         searchItemList = new ArrayList<>();
 
@@ -57,9 +60,17 @@ public class SearchActivity extends Activity {
         gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Store sStore =null;
+                Item sItem = searchItemList.get(position);
+                for(Store store : storeList ) {
+                    if (store.id == sItem.storeID) {
+                        sStore = store;
+                        break;
+                    }
+                }
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
-                //값으로 position을 넘겨주는데 이를 이용해서 그 물품의 정보를 가져오면 될거라고 생각해봤어요..
-                i.putExtra("item",searchItemList.get(position));
+                i.putExtra("item",sItem);
+                i.putExtra("store",sStore);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
