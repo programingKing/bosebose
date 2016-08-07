@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -61,12 +62,15 @@ class MyAdapter extends BaseAdapter {
             convertView.setLayoutParams(new GridView.LayoutParams(width/2, width/2));
         }
         ImageView image = (ImageView)convertView.findViewById(R.id.thingsImagePreview);
+        TextView text = (TextView)convertView.findViewById(R.id.thingsImageStroeName);
 
         Picasso.with(context)
                 .load(itemList.get(position).getImage1())
                 .fit()
                 .centerCrop()
                 .into(image);
+
+        text.setText(itemList.get(position).getStoreName());
 
         return convertView;
     }
