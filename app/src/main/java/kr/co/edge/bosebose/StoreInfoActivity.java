@@ -6,6 +6,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -28,13 +31,15 @@ public class StoreInfoActivity extends Activity {
     boolean checkAddLike;
     SharedPreferencesHelper sharedPreferencesHelper;
     WebView webView;
+    Animation animScale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_info);
         context=this;
+        animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
+
 
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
         // 즐겨찾기목록을 가져옴
@@ -115,15 +120,19 @@ public class StoreInfoActivity extends Activity {
                     finish();
                     break;
                 case R.id.storesLIke:
+                    AnimationSet sets = new AnimationSet(false);
+                    sets.addAnimation(animScale);
                     //TODO 즐겨찾기 추가
                     if (!checkAddLike) {
                         checkAddLike = true;
                         likeStores.add(String.valueOf(store.getId()));
                         storeLike.setImageResource(R.drawable.favorite_click);
+                        storeLike.startAnimation(sets);
                     } else {
                         checkAddLike = false;
                         likeStores.remove(String.valueOf(store.getId()));
                         storeLike.setImageResource(R.drawable.favorite);
+                        storeLike.startAnimation(sets);
                     }
                     sharedPreferencesHelper.setStringArrayPref(context, "likeStores", likeStores);
                     break;
