@@ -15,6 +15,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -42,6 +43,8 @@ public class ItemInfoActivity extends Activity{
     SharedPreferencesHelper sharedPreferencesHelper;
     boolean checkAddLike;
     Animation animScale;
+    Animation animAlpha;
+    Animation animAlpha2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,8 @@ public class ItemInfoActivity extends Activity{
         context=this;
 
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
+        animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
+        animAlpha2 = AnimationUtils.loadAnimation(this, R.anim.anim_alpha2);
 
         // 즐겨찾기목록을 가져옴
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
@@ -101,6 +106,30 @@ public class ItemInfoActivity extends Activity{
         params.height = mDisplay.getWidth();
         carouselView.setLayoutParams(params);
         carouselView.setImageListener(imageListener);
+    }
+
+    @Override
+    protected  void onStart() {
+        super.onStart();
+
+        final AnimationSet sets2 = new AnimationSet(false);
+        sets2.addAnimation(animAlpha);
+        final AnimationSet sets3 = new AnimationSet(false);
+        sets3.addAnimation(animAlpha2);
+        LinearLayout itemTitleWrapper = (LinearLayout)findViewById(R.id.itemTitleWrapper);
+        final LinearLayout itemPriceWrapper = (LinearLayout)findViewById(R.id.itemPriceWrapper);
+        final LinearLayout itemContentWrapper = (LinearLayout)findViewById(R.id.itemContentWrapper);
+        itemTitleWrapper.startAnimation(sets2);
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        itemPriceWrapper.startAnimation(sets3);
+                        itemContentWrapper.startAnimation(sets3);
+                        itemPriceWrapper.setAlpha(1);
+                        itemContentWrapper.setAlpha(1);
+                    }
+                }, 1000);
     }
 
     ImageListener imageListener = new ImageListener() {

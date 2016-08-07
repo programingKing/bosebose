@@ -64,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:background="#f0f0f0">
                     <LinearLayout
+                        android:id="@+id/itemTitleWrapper"
                         android:background="#ffffff"
                         android:layout_marginBottom="1dp"
                         android:paddingBottom="10dp"
@@ -95,10 +96,12 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/itemPriceWrapper"
                         android:layout_marginTop="12dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:alpha="0">
                         <ImageView
                             android:paddingBottom="1dp"
                             android:paddingTop="3dp"
@@ -119,11 +122,13 @@
                         </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/itemContentWrapper"
                         android:layout_marginBottom="12dp"
                         android:layout_marginTop="12dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:alpha="0">
                         <ImageView
                             android:paddingBottom="1dp"
                             android:paddingTop="3dp"
