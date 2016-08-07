@@ -6,7 +6,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,8 +17,6 @@ public class MainActivity extends Activity {
     Intent i;
     private ImageButton seeHeaderThings;
     private ImageButton seeHeaderStores;
-    private ImageButton tab_store;
-    private ImageButton tab_product;
     private ViewPager mPager;
     ArrayList<Item> itemList;
     ArrayList<Store> storeList;
@@ -25,10 +25,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        tab_product=(ImageButton)findViewById(R.id.tab_product);
-        tab_product.setImageResource(R.drawable.tap_product);
-        tab_store=(ImageButton) findViewById(R.id.tab_store);
+        final LinearLayout indicator = (LinearLayout)findViewById(R.id.indicator);
+        indicator.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels / 2;
 
         itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
@@ -36,6 +34,22 @@ public class MainActivity extends Activity {
         mPager = (ViewPager)findViewById(R.id.mian_grid_pager);
         mPager.setAdapter(new MyPagerAdapter(getApplicationContext(),itemList,storeList));
         mPager.setCurrentItem(0);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position != 1 && positionOffset != 0) {
+                    int setLeftMargin = (int) (getResources().getDisplayMetrics().widthPixels * positionOffset / 2);
+                    setMargins(indicator, setLeftMargin, 0, 0, 0);
+                }
+            }
+            @Override
+            public void onPageSelected(int position) {
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
 
         findViewById(R.id.headerMainLogoBtn).setOnClickListener(mClickListener);
         findViewById(R.id.headerFavoriteStoreBtn).setOnClickListener(mClickListener);
@@ -61,14 +75,10 @@ public class MainActivity extends Activity {
                     case 0:
                         seeHeaderThings.setImageResource(R.drawable.product_clicked);
                         seeHeaderStores.setImageResource(R.drawable.store);
-                        tab_product.setImageResource(R.drawable.tap_product);
-                        tab_store.setImageResource(R.drawable.tap);
                         break;
                     case 1:
                         seeHeaderThings.setImageResource(R.drawable.product);
                         seeHeaderStores.setImageResource(R.drawable.store_clicked);
-                        tab_product.setImageResource(R.drawable.tap);
-                        tab_store.setImageResource(R.drawable.tap_store);
                         break;
                 }
             }
@@ -109,6 +119,12 @@ public class MainActivity extends Activity {
             }
         }
     };
-
+    private void setMargins (View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.requestLayout();
+        }
+    }
 
 }
