@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +41,7 @@ public class ItemInfoActivity extends Activity{
     ArrayList<String> likeItems;
     SharedPreferencesHelper sharedPreferencesHelper;
     boolean checkAddLike;
+    Animation animScale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,10 @@ public class ItemInfoActivity extends Activity{
         setContentView(R.layout.activity_item_info);
         context=this;
 
-        sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
+        animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
+
         // 즐겨찾기목록을 가져옴
+        sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
         likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
@@ -86,7 +92,6 @@ public class ItemInfoActivity extends Activity{
             checkAddLike = false;
             thingsLIke.setImageResource(R.drawable.like);
         }
-
         thingsLIke.setOnClickListener(mClickListener);
 
         carouselView = (CarouselView) findViewById(R.id.thingsImage);
@@ -96,13 +101,11 @@ public class ItemInfoActivity extends Activity{
         params.height = mDisplay.getWidth();
         carouselView.setLayoutParams(params);
         carouselView.setImageListener(imageListener);
-
     }
 
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
-
             Picasso.with(context)
                     .load(imageList.get(position))
                     .resize(500,500)
@@ -123,15 +126,19 @@ public class ItemInfoActivity extends Activity{
                     startActivity(intent);
                     break;
                 case R.id.thingsLIke:
+                    AnimationSet sets = new AnimationSet(false);
+                    sets.addAnimation(animScale);
                     //TODO 즐겨찾기 추가
                     if (!checkAddLike) {
                         checkAddLike = true;
                         likeItems.add(String.valueOf(item.getId()));
                         thingsLIke.setImageResource(R.drawable.like_clicked);
+                        thingsLIke.startAnimation(sets);
                     } else {
                         checkAddLike = false;
                         likeItems.remove(String.valueOf(item.getId()));
                         thingsLIke.setImageResource(R.drawable.like);
+                        thingsLIke.startAnimation(sets);
                     }
                     sharedPreferencesHelper.setStringArrayPref(context, "likeItems", likeItems);
                     break;
