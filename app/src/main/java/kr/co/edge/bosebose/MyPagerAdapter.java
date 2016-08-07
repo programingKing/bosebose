@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -64,8 +65,6 @@ public class MyPagerAdapter extends PagerAdapter {
             Spinner headerCategorie = (Spinner)headerView.findViewById(R.id.selectCategorie);
             Spinner headerFilter = (Spinner)headerView.findViewById(R.id.selectFilter);
 
-
-
             headerCategorie.setOnItemSelectedListener(mGetItemClickListener);
             headerFilter.setOnItemSelectedListener(mGetItemClickListener);
             gvThings.addHeaderView(headerView);
@@ -122,11 +121,13 @@ public class MyPagerAdapter extends PagerAdapter {
                     category = item.toString();
                     ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
                     ((TextView)parent.getChildAt(0)).setTextSize(13);
+                    ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);;
                     break;
                 case R.id.selectFilter:
                     order = item.toString();
                     ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
                     ((TextView)parent.getChildAt(0)).setTextSize(13);
+                    ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);;
                     break;
             }
 
