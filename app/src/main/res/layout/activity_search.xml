@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/searchKeyword"
-                android:layout_weight="7.7"/>
+                android:layout_weight="8.1"/>
 
             <ImageButton
                 android:padding="9dp"
@@ -43,7 +43,7 @@
                 android:id="@+id/HeaderSearchBtn"
                 android:src="@drawable/search"
                 android:layout_margin="5dp"
-                android:layout_weight="1.5"/>
+                android:layout_weight="1.1"/>
         </LinearLayout>
 
         <LinearLayout
