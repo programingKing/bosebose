@@ -32,6 +32,7 @@ public class SearchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.overridePendingTransition(R.anim.start_enter, R.anim.start_exit);
         setContentView(R.layout.activity_search);
 
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
@@ -129,5 +130,9 @@ public class SearchActivity extends Activity {
             }
         });
     }
-
+    @Override
+    public void finish() {
+        super.finish();
+        this.overridePendingTransition(R.anim.end_enter, R.anim.end_exit);
+    }
 }
