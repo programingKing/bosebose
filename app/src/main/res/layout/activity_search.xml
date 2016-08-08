@@ -13,10 +13,10 @@
             android:background="#ffffff">
 
             <ImageButton
-                android:padding="10dp"
+                android:padding="17dp"
                 android:scaleType="fitCenter"
                 android:background="#ffffff"
-                android:layout_width="0dp"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
                 android:src="@drawable/backbutton"
