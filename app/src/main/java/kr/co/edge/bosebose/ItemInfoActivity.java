@@ -129,7 +129,7 @@ public class ItemInfoActivity extends Activity{
                         itemPriceWrapper.setAlpha(1);
                         itemContentWrapper.setAlpha(1);
                     }
-                }, 1000);
+                }, 500);
     }
 
     ImageListener imageListener = new ImageListener() {
