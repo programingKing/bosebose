@@ -80,7 +80,15 @@ public class ItemInfoActivity extends Activity{
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
         thingsTag.setText(String.valueOf(item.getTag()));
         thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
-        //TODO 즐겨찾기에 추가유무에 따라서 토글 되야됨. 이아디가 추가되있으면
+
+        thingsStoreName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ItemInfoActivity.this, StoreInfoActivity.class);
+                intent.putExtra("store",store);
+                startActivity(intent);
+            }
+        });
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
        // Typeface godic = Typeface.createFromAsset(getAssets(),"NotoSans-Regular.ttf");
