@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:text="hello"
         android:textSize="15dp"
+        android:textColor="#fff"
         android:background="#53000000"
         android:id="@+id/thingsImageStroeName"
         android:layout_alignRight="@+id/thingsImagePreview"
