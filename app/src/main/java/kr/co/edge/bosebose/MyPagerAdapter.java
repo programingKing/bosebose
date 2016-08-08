@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -64,6 +65,15 @@ public class MyPagerAdapter extends PagerAdapter {
             View headerView = layoutInflater.inflate(R.layout.main_grid_items_header, null);
             Spinner headerCategorie = (Spinner)headerView.findViewById(R.id.selectCategorie);
             Spinner headerFilter = (Spinner)headerView.findViewById(R.id.selectFilter);
+
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                    (String[])context.getResources().getStringArray(R.array.category));
+            ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                    (String[])context.getResources().getStringArray(R.array.filter));
+            spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
+            spinnerAdapter2.setDropDownViewResource(R.layout.spinner_dropdown);
+            headerCategorie.setAdapter(spinnerAdapter);
+            headerFilter.setAdapter(spinnerAdapter);
 
             headerCategorie.setOnItemSelectedListener(mGetItemClickListener);
             headerFilter.setOnItemSelectedListener(mGetItemClickListener);
