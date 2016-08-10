@@ -73,7 +73,7 @@ public class MyPagerAdapter extends PagerAdapter {
             spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
             spinnerAdapter2.setDropDownViewResource(R.layout.spinner_dropdown);
             headerCategorie.setAdapter(spinnerAdapter);
-            headerFilter.setAdapter(spinnerAdapter);
+            headerFilter.setAdapter(spinnerAdapter2);
 
             headerCategorie.setOnItemSelectedListener(mGetItemClickListener);
             headerFilter.setOnItemSelectedListener(mGetItemClickListener);
