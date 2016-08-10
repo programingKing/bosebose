@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.overridePendingTransition(R.anim.start_enter, R.anim.start_exit);
         setContentView(R.layout.activity_main);
         final LinearLayout indicator = (LinearLayout)findViewById(R.id.indicator);
         indicator.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels / 2;
@@ -126,5 +127,9 @@ public class MainActivity extends Activity {
             view.requestLayout();
         }
     }
-
+    @Override
+    public void finish() {
+        super.finish();
+        this.overridePendingTransition(R.anim.end_enter, R.anim.end_exit);
+    }
 }
