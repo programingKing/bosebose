@@ -68,7 +68,6 @@ public class StoreInfoActivity extends Activity {
        // webView.loadUrl("http://192.168.43.102/daumapi.php");
 
         TextView storeName = (TextView)findViewById(R.id.storeName);
-        storeName.setText(String.valueOf(store.getName()));
         TextView storesContent = (TextView)findViewById(R.id.storesContent);
         storesContent.setText(String.valueOf(store.getIntroduction()));
         TextView storeThingsNum = (TextView)findViewById(R.id.storeThingsNum);

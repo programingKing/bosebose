@@ -70,7 +70,6 @@ public class ItemInfoActivity extends Activity{
         addHit(item.getId()); // 조회수 증가
 
         TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
-        thingsStoreName.setText(String.valueOf(item.getStoreName()));
         TextView thingsTitle = (TextView)findViewById(R.id.thingsTitle);
         thingsTitle.setText(String.valueOf(item.getName()));
       //  TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
@@ -80,15 +79,6 @@ public class ItemInfoActivity extends Activity{
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
         thingsTag.setText(String.valueOf(item.getTag()));
         thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
-
-        thingsStoreName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ItemInfoActivity.this, StoreInfoActivity.class);
-                intent.putExtra("store",store);
-                startActivity(intent);
-            }
-        });
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
        // Typeface godic = Typeface.createFromAsset(getAssets(),"NotoSans-Regular.ttf");

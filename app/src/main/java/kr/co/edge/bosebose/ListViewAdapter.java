@@ -52,11 +52,9 @@ class MyListAdapter extends BaseAdapter {
         }
 
         ImageView image = (ImageView)convertView.findViewById(R.id.storesImagePreview);
-        TextView listStoreName = (TextView)convertView.findViewById(R.id.listStoreName);
         TextView listStoreContent = (TextView)convertView.findViewById(R.id.listStoreContent);
         TextView listStoreFavoriteNum = (TextView)convertView.findViewById(R.id.listStoreFavoriteNum);
         ImageButton storesLIke = (ImageButton)convertView.findViewById(R.id.storesLIke);
-        listStoreName.setText(storeList.get(position).getName());
         listStoreContent.setText(storeList.get(position).getIntroduction());
         listStoreFavoriteNum.setText(String.valueOf(storeList.get(position).getHit()));
 
