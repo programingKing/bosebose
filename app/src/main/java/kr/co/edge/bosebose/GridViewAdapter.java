@@ -62,7 +62,7 @@ class MyAdapter extends BaseAdapter {
             convertView.setLayoutParams(new GridView.LayoutParams(width/2, width/2));
         }
         ImageView image = (ImageView)convertView.findViewById(R.id.thingsImagePreview);
-        TextView text = (TextView)convertView.findViewById(R.id.thingsImageStroeName);
+        TextView text = (TextView)convertView.findViewById(R.id.thingsImageItemName);
 
         Picasso.with(context)
                 .load(itemList.get(position).getImage1())
@@ -70,7 +70,7 @@ class MyAdapter extends BaseAdapter {
                 .centerCrop()
                 .into(image);
 
-        text.setText(itemList.get(position).getStoreName());
+        text.setText(itemList.get(position).getName());
 
         return convertView;
     }
