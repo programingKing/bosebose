@@ -15,12 +15,12 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#ffffff">
+            android:background="#FA8D74">
 
             <ImageButton
                 android:padding="17dp"
                 android:scaleType="fitCenter"
-                android:background="#ffffff"
+                android:background="@drawable/button_click"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
@@ -28,7 +28,7 @@
                 android:layout_weight="0.8"/>
 
             <TextView
-                android:textColor="#000000"
+                android:textColor="#fff"
                 android:textSize="25dp"
                 android:gravity="center_vertical"
                 android:layout_width="0dp"
@@ -53,7 +53,7 @@
                     android:id="@+id/thingsImage"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    app:fillColor="#f98c74"
+                    app:fillColor="#FA8D74"
                     app:pageColor="#d8d8d8"
                     app:radius="7dp"
                     app:slideInterval="10000"
