@@ -78,6 +78,8 @@ public class ItemInfoActivity extends Activity{
         thingsPrice.setText(String.valueOf(item.getPrice()));
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
         thingsTag.setText(String.valueOf(item.getTag()));
+        TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
+        thingsContent.setText(String.valueOf(item.getContent()));
         thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
@@ -116,6 +118,7 @@ public class ItemInfoActivity extends Activity{
         sets3.addAnimation(animAlpha2);
         LinearLayout itemTitleWrapper = (LinearLayout)findViewById(R.id.itemTitleWrapper);
         final LinearLayout itemPriceWrapper = (LinearLayout)findViewById(R.id.itemPriceWrapper);
+        final LinearLayout itemTagWrapper = (LinearLayout)findViewById(R.id.itemTagWrapper);
         final LinearLayout itemContentWrapper = (LinearLayout)findViewById(R.id.itemContentWrapper);
         itemTitleWrapper.startAnimation(sets2);
 
@@ -123,8 +126,10 @@ public class ItemInfoActivity extends Activity{
                 new Runnable() {
                     public void run() {
                         itemPriceWrapper.startAnimation(sets3);
+                        itemTagWrapper.startAnimation(sets3);
                         itemContentWrapper.startAnimation(sets3);
                         itemPriceWrapper.setAlpha(1);
+                        itemTagWrapper.setAlpha(1);
                         itemContentWrapper.setAlpha(1);
                     }
                 }, 500);
