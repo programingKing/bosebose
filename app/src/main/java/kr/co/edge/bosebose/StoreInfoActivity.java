@@ -1,17 +1,20 @@
 package kr.co.edge.bosebose;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +24,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class StoreInfoActivity extends Activity {
-
 
     ImageView imageView;
     Context context;
@@ -40,7 +42,6 @@ public class StoreInfoActivity extends Activity {
         context=this;
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
 
-
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
         // 즐겨찾기목록을 가져옴
         likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
@@ -51,11 +52,10 @@ public class StoreInfoActivity extends Activity {
         store  = (Store) getIntent().getExtras().getSerializable("store");
 
         imageView = (ImageView)findViewById(R.id.storeImage);
-        System.out.println(store.getImage());
 
         Picasso.with(context)
                 .load(store.getImage())
-                .resize(mDisplay.getWidth(),mDisplay.getWidth())
+                .resize(mDisplay.getWidth(),mDisplay.getWidth()/3)
                 .centerCrop()
                 .into(imageView);
 
@@ -67,7 +67,9 @@ public class StoreInfoActivity extends Activity {
         webView.setWebViewClient(new WebViewClientClass());
        // webView.loadUrl("http://192.168.43.102/daumapi.php");
 
-        TextView storeName = (TextView)findViewById(R.id.storeName);
+        TextView storeTitle = (TextView)findViewById(R.id.storeTitle);
+        storeTitle.setText(String.valueOf(store.getName()));
+        TextView tabName = (TextView)findViewById(R.id.tabName);
         TextView storesContent = (TextView)findViewById(R.id.storesContent);
         storesContent.setText(String.valueOf(store.getIntroduction()));
         TextView storeThingsNum = (TextView)findViewById(R.id.storeThingsNum);
@@ -82,6 +84,8 @@ public class StoreInfoActivity extends Activity {
         storePhoneNum.setText(String.valueOf(store.getHit()));
 
         storeLike = (ImageButton)findViewById(R.id.storesLIke);
+        ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) storeLike.getLayoutParams();
+        marginParams.setMargins(mDisplay.getWidth() - 80, mDisplay.getWidth()/3 - 80, 0, 0);
         if (likeStores.contains(String.valueOf(store.getId()))) {
             checkAddLike = true;
             storeLike.setImageResource(R.drawable.favorite_click);
@@ -92,7 +96,8 @@ public class StoreInfoActivity extends Activity {
         storeLike.setOnClickListener(mClickListener);
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
-        storeName.setTypeface(typeface);
+        tabName.setTypeface(typeface);
+        storeTitle.setTypeface(typeface);
         webView= (WebView)findViewById(R.id.webview);
         webSettings.setJavaScriptEnabled(true);
         webView.setVerticalScrollBarEnabled(true);
