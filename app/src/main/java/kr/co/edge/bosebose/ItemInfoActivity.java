@@ -72,8 +72,8 @@ public class ItemInfoActivity extends Activity{
         TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
         TextView thingsTitle = (TextView)findViewById(R.id.thingsTitle);
         thingsTitle.setText(String.valueOf(item.getName()));
-      //  TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
-      //  thingsContent.setText(String.valueOf(item.getContent()));
+        TextView thingsLikeValue = (TextView)findViewById(R.id.thingsLikeValue);
+        thingsLikeValue.setText(String.valueOf(item.getHit()));
         TextView thingsPrice = (TextView)findViewById(R.id.thingsPrice);
         thingsPrice.setText(String.valueOf(item.getPrice()));
         TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
@@ -117,6 +117,7 @@ public class ItemInfoActivity extends Activity{
         final AnimationSet sets3 = new AnimationSet(false);
         sets3.addAnimation(animAlpha2);
         LinearLayout itemTitleWrapper = (LinearLayout)findViewById(R.id.itemTitleWrapper);
+        final LinearLayout itemLikeWrapper = (LinearLayout)findViewById(R.id.itemLikeWrapper);
         final LinearLayout itemPriceWrapper = (LinearLayout)findViewById(R.id.itemPriceWrapper);
         final LinearLayout itemTagWrapper = (LinearLayout)findViewById(R.id.itemTagWrapper);
         final LinearLayout itemContentWrapper = (LinearLayout)findViewById(R.id.itemContentWrapper);
@@ -125,9 +126,11 @@ public class ItemInfoActivity extends Activity{
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
+                        itemLikeWrapper.startAnimation(sets3);
                         itemPriceWrapper.startAnimation(sets3);
                         itemTagWrapper.startAnimation(sets3);
                         itemContentWrapper.startAnimation(sets3);
+                        itemLikeWrapper.setAlpha(1);
                         itemPriceWrapper.setAlpha(1);
                         itemTagWrapper.setAlpha(1);
                         itemContentWrapper.setAlpha(1);

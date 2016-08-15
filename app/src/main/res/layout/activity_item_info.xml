@@ -97,6 +97,31 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/itemLikeWrapper"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0">
+                        <ImageView
+                            android:paddingBottom="1dp"
+                            android:paddingTop="3dp"
+                            android:src="@drawable/heart"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp" />
+                        <TextView
+                            android:textColor="#000000"
+                            android:gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:text="hello"
+                            android:id="@+id/thingsLikeValue"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:id="@+id/itemPriceWrapper"
                         android:layout_marginTop="12dp"
                         android:orientation="horizontal"
@@ -120,7 +145,7 @@
                             android:text="hello"
                             android:id="@+id/thingsPrice"
                             android:textSize="15dp"/>
-                        </LinearLayout>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/itemTagWrapper"
