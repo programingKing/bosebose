@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -17,6 +18,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -39,8 +41,9 @@ public class StoreInfoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_info);
-        context=this;
+        context = this;
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
+        final ScrollView scrollViewId = (ScrollView)findViewById(R.id.scrollViewId);
 
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
         // 즐겨찾기목록을 가져옴
@@ -103,6 +106,14 @@ public class StoreInfoActivity extends Activity {
         webView.setVerticalScrollBarEnabled(true);
         webView.setHorizontalScrollBarEnabled(true);
         webView.setWebViewClient(new WebViewClientClass());
+        webView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                scrollViewId.requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
         String url =
                 NetworkService.SERVICE_URL+"GetStoreMap.php"
                         +"?lon="+store.getLocationX()+"&lat="+store.getLocationY()+"&storeName="+store.getName();
