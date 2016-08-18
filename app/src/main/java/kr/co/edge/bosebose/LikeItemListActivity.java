@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
@@ -25,6 +27,7 @@ public class LikeItemListActivity extends Activity {
     ArrayList<String> likeItems;
     ArrayList<Item> likeItemList;
     ArrayList<Store> storeList;
+    ArrayList<Item> itemList;
     MyAdapter thingsAdapter;
 
     SharedPreferencesHelper sharedPreferencesHelper;
@@ -36,6 +39,7 @@ public class LikeItemListActivity extends Activity {
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
 
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
+        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         TextView textView=(TextView)findViewById(R.id.storeName);
@@ -44,6 +48,15 @@ public class LikeItemListActivity extends Activity {
         likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
 
         likeItemList = new ArrayList<>();
+
+        for (int i = 0, ii = likeItems.size(); i < ii ; i++) {
+            for (int j = 0, jj = itemList.size(); j < jj ; j++) {
+                if (likeItems.get(i).equals(String.valueOf(itemList.get(j).getId()))) {
+                    likeItemList.add(itemList.get(j));
+                }
+            }
+        }
+        Collections.reverse(likeItemList);
         thingsAdapter = new MyAdapter (getApplicationContext(), R.layout.things_item, likeItemList, getWindowManager().getDefaultDisplay().getWidth());
         //헤더가 될 뷰를 추가함 GridViewWithHeaderAndFooter는 라이브러리입니다
         GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.favoriteTingsList);
@@ -51,7 +64,6 @@ public class LikeItemListActivity extends Activity {
         gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Store sStore =null;
                 Item sItem = likeItemList.get(position);
                 for(Store store : storeList ) {
@@ -68,10 +80,8 @@ public class LikeItemListActivity extends Activity {
             }
         });
 
-        getLikeItem(likeItems);
-
+//        getLikeItem(likeItems);
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
-
     }
 
     //백버튼 제어
@@ -87,27 +97,27 @@ public class LikeItemListActivity extends Activity {
 
     public void getLikeItem(ArrayList<String> ids){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(NetworkService.SERVICE_URL)
-                .build();
 
-        final NetworkService service = retrofit.create(NetworkService.class);
-        Call<List<Item>> callback = service.getLikeItem(ids);
-        callback.enqueue(new Callback<List<Item>>() {
-            @Override
-            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
-
-                ArrayList<Item> itemList = new ArrayList<>();
-                itemList.addAll(response.body());
-                thingsAdapter.renewItem(itemList);
-                thingsAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onFailure(Call<List<Item>> call, Throwable t) {
-                Log.i("lsw","error:"+t.getMessage());
-            }
-        });
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .baseUrl(NetworkService.SERVICE_URL)
+//                .build();
+//        final NetworkService service = retrofit.create(NetworkService.class);
+//        Call<List<Item>> callback = service.getLikeItem(ids);
+//        callback.enqueue(new Callback<List<Item>>() {
+//            @Override
+//            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+//
+//                ArrayList<Item> itemList = new ArrayList<>();
+//                itemList.addAll(response.body());
+//                thingsAdapter.renewItem(itemList);
+//                thingsAdapter.notifyDataSetChanged();
+//            }
+//            @Override
+//            public void onFailure(Call<List<Item>> call, Throwable t) {
+//                Log.i("lsw","error:"+t.getMessage());
+//            }
+//        });
     }
 
 

@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FavoriteStoreListActivity extends Activity {
     Intent i;
@@ -44,6 +45,7 @@ public class FavoriteStoreListActivity extends Activity {
                 }
             }
         }
+        Collections.reverse(likeStoreList);
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
 
