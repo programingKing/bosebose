@@ -36,14 +36,19 @@ public class SearchActivity extends Activity {
         setContentView(R.layout.activity_search);
 
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
+        String searchItem = (String)getIntent().getSerializableExtra("searchItem");
+
 
         searchItemList = new ArrayList<>();
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
         searchKeyword = (EditText)findViewById(R.id.searchKeyword);
         ImageButton headerSearchBtn = (ImageButton)findViewById(R.id.HeaderSearchBtn);
-
         headerSearchBtn.setOnClickListener(mClickListener);
+        if (searchItem != null) {
+            searchKeyword.setText(searchItem);
+            getSearchKeyword();
+        }
         searchKeyword.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

@@ -3,6 +3,7 @@ package kr.co.edge.bosebose;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -76,8 +78,23 @@ public class ItemInfoActivity extends Activity{
         thingsLikeValue.setText(String.valueOf(item.getHit()));
         TextView thingsPrice = (TextView)findViewById(R.id.thingsPrice);
         thingsPrice.setText(String.valueOf(item.getPrice()));
-        TextView thingsTag = (TextView)findViewById(R.id.thingsTag);
-        thingsTag.setText(String.valueOf(item.getTag()));
+
+        LinearLayout itemTagContent = (LinearLayout)findViewById(R.id.itemTagContent);
+        final String[] itemTag = item.getTag().split("#");
+        for(int i = 1, ii = itemTag.length ; i < ii ; i++) {
+            final String value = itemTag[i];
+            TextView itemTagStr = new TextView(context);
+            itemTagStr.setText("#" + value);
+            itemTagStr.setTextColor(Color.parseColor("#FF101093"));
+            itemTagStr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToSearch(value);
+                }
+            });
+            itemTagContent.addView(itemTagStr);
+        }
+
         TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
         thingsContent.setText(String.valueOf(item.getContent()));
         thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
@@ -88,7 +105,6 @@ public class ItemInfoActivity extends Activity{
         thingsStoreName.setTypeface(typeface);
         //thingsTitle.setTypeface(boldgodic);
         //thingsPrice.setTypeface(godic);
-        //thingsTag.setTypeface(godic);
 
         if (likeItems.contains(String.valueOf(item.getId()))) {
             checkAddLike = true;
@@ -223,5 +239,10 @@ public class ItemInfoActivity extends Activity{
         return imageList;
     }
 
+    public void goToSearch(String searchItem) {
+        Intent intent = new Intent(ItemInfoActivity.this, SearchActivity.class);
+        intent.putExtra("searchItem", searchItem);
+        startActivity(intent);
+    }
 
 }
