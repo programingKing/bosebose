@@ -28,16 +28,18 @@ public class FavoriteStoreListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_store_list);
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
-
-
-        storeList = (ArrayList<Store>) getIntent().getSerializableExtra("storeList");
-        likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
-        likeStoreList = new ArrayList<Store>();
-
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         TextView textView=(TextView)findViewById(R.id.storeName);
         textView.setTypeface(typeface);
+        storeList = (ArrayList<Store>) getIntent().getSerializableExtra("storeList");
+        findViewById(R.id.backBtn).setOnClickListener(mClickListener);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
+        likeStoreList = new ArrayList<Store>();
         for (int i = 0, ii = likeStores.size(); i < ii ; i++) {
             for (int j = 0, jj = storeList.size(); j < jj ; j++) {
                 if (likeStores.get(i).equals(String.valueOf(storeList.get(j).getId()))) {
@@ -46,9 +48,6 @@ public class FavoriteStoreListActivity extends Activity {
             }
         }
         Collections.reverse(likeStoreList);
-
-        findViewById(R.id.backBtn).setOnClickListener(mClickListener);
-
         //가게정보로 넘어감
         MyListAdapter lIstAdapter = new MyListAdapter (getApplicationContext(), R.layout.stores_item, likeStoreList, getWindowManager().getDefaultDisplay().getWidth());
         ListView lv = (ListView)findViewById(R.id.favoriteStoreList);

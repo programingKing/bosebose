@@ -37,18 +37,22 @@ public class LikeItemListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_item_list);
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
-
-        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
-        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
-
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         TextView textView=(TextView)findViewById(R.id.storeName);
         textView.setTypeface(typeface);
 
+        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
+        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
+
+//        getLikeItem(likeItems);
+        findViewById(R.id.backBtn).setOnClickListener(mClickListener);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
-
         likeItemList = new ArrayList<>();
-
         for (int i = 0, ii = likeItems.size(); i < ii ; i++) {
             for (int j = 0, jj = itemList.size(); j < jj ; j++) {
                 if (likeItems.get(i).equals(String.valueOf(itemList.get(j).getId()))) {
@@ -79,9 +83,6 @@ public class LikeItemListActivity extends Activity {
                 startActivity(i);
             }
         });
-
-//        getLikeItem(likeItems);
-        findViewById(R.id.backBtn).setOnClickListener(mClickListener);
     }
 
     //백버튼 제어
@@ -96,8 +97,6 @@ public class LikeItemListActivity extends Activity {
     };
 
     public void getLikeItem(ArrayList<String> ids){
-
-
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .baseUrl(NetworkService.SERVICE_URL)
