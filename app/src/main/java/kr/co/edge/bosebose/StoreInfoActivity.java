@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -18,6 +20,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -41,26 +44,52 @@ public class StoreInfoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_info);
+        final ScrollView scrollViewId = (ScrollView)findViewById(R.id.scrollViewId);
+        final Display mDisplay = getWindowManager().getDefaultDisplay();
+        final int width = mDisplay.getWidth();
         context = this;
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
-        final ScrollView scrollViewId = (ScrollView)findViewById(R.id.scrollViewId);
-
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
-        // 즐겨찾기목록을 가져옴
         likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
+        store  = (Store) getIntent().getExtras().getSerializable("store");
+        imageView = (ImageView)findViewById(R.id.storeImage);
+
+        LinearLayout storeInfo = (LinearLayout)findViewById(R.id.storeInfo);
+        ViewGroup.MarginLayoutParams storeInfoMarginParams = (ViewGroup.MarginLayoutParams) storeInfo.getLayoutParams();
+        storeInfoMarginParams.setMargins(0,width, 0, 0);
+        final FrameLayout frameLayoutId = (FrameLayout)findViewById(R.id.frameLayoutId);
+        frameLayoutId.bringToFront();
+        final ViewGroup.MarginLayoutParams frameLayoutIdParams = (ViewGroup.MarginLayoutParams) frameLayoutId.getLayoutParams();
+
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
-        Display mDisplay = getWindowManager().getDefaultDisplay();
-
-        store  = (Store) getIntent().getExtras().getSerializable("store");
-
-        imageView = (ImageView)findViewById(R.id.storeImage);
 
         Picasso.with(context)
                 .load(store.getImage())
-                .resize(mDisplay.getWidth(),mDisplay.getWidth()/3)
+                .resize(width, width)
                 .centerCrop()
                 .into(imageView);
+
+        storeLike = (ImageButton)findViewById(R.id.storesLIke);
+        final ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) storeLike.getLayoutParams();
+        marginParams.setMargins(width - 80, width - 80, 0, 0);
+        final Drawable blackWrapper = ((ImageView)findViewById(R.id.blackWrapper)).getBackground();
+        blackWrapper.setAlpha(0);
+        scrollViewId.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                int scrollY = scrollViewId.getScrollY(); // For ScrollView
+                if (scrollY > 0 && scrollY <= 600) {
+                    blackWrapper.setAlpha(scrollY / 3);
+                }
+                if (width - scrollY >= width / 4) {
+                    frameLayoutIdParams.height = width - scrollY;
+                    frameLayoutId.requestLayout();
+                    marginParams.setMargins(width - 80,  width - scrollY - 80, 0, 0);
+                    storeLike.requestLayout();
+                }
+            }
+        });
 
         webView = (WebView)findViewById(R.id.webview);
         WebSettings webSettings=webView.getSettings();
@@ -69,6 +98,7 @@ public class StoreInfoActivity extends Activity {
         webView.setHorizontalScrollBarEnabled(false);
         webView.setWebViewClient(new WebViewClientClass());
        // webView.loadUrl("http://192.168.43.102/daumapi.php");
+
 
         TextView storeTitle = (TextView)findViewById(R.id.storeTitle);
         storeTitle.setText(String.valueOf(store.getName()));
@@ -86,9 +116,6 @@ public class StoreInfoActivity extends Activity {
         TextView storePhoneNum = (TextView)findViewById(R.id.storePhoneNum);
         storePhoneNum.setText(String.valueOf(store.getHit()));
 
-        storeLike = (ImageButton)findViewById(R.id.storesLIke);
-        ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) storeLike.getLayoutParams();
-        marginParams.setMargins(mDisplay.getWidth() - 80, mDisplay.getWidth()/3 - 80, 0, 0);
         if (likeStores.contains(String.valueOf(store.getId()))) {
             checkAddLike = true;
             storeLike.setImageResource(R.drawable.favorite_click);
