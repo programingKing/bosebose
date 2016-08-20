@@ -60,7 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/HeaderSearchBtn"
-                android:src="@drawable/search"
+                android:src="@drawable/search_click"
                 android:layout_weight="1.1"/>
         </LinearLayout>
 
