@@ -75,19 +75,28 @@
                         android:layout_height="match_parent"
                         >
                         <TextView
-                            android:layout_marginLeft="10dp"
+                            android:id="@+id/thingsTitle"
                             android:textColor="#000000"
-                            android:layout_weight="8.5"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="8"
                             android:textStyle="bold"
                             android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:text="타이틀"
-                            android:textSize="9pt"
+                            android:textSize="15dp"
+                            android:gravity="center_vertical"/>
+                        <TextView
+                            android:id="@+id/thingsLikeValue"
+                            android:textColor="#000000"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:text="hello"
                             android:gravity="center_vertical"
-                            android:id="@+id/thingsTitle"/>
+                            android:textSize="15dp"/>
                         <ImageButton
                             android:padding="5dp"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:background="#ffffff"
                             android:layout_width="0dp"
@@ -96,31 +105,6 @@
                             android:id="@+id/thingsLIke"/>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/itemLikeWrapper"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:alpha="0">
-                        <ImageView
-                            android:paddingBottom="1dp"
-                            android:paddingTop="3dp"
-                            android:src="@drawable/heart"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp" />
-                        <TextView
-                            android:textColor="#000000"
-                            android:gravity="center_vertical"
-                            android:layout_weight="9"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp"
-                            android:text="hello"
-                            android:id="@+id/thingsLikeValue"
-                            android:textSize="15dp"/>
-                    </LinearLayout>
                     <LinearLayout
                         android:id="@+id/itemPriceWrapper"
                         android:layout_marginTop="12dp"
@@ -169,7 +153,11 @@
                             android:orientation="horizontal"
                             android:id="@+id/itemTagContent"></LinearLayout>
                     </LinearLayout>
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#c2c2c2"/>
                     <LinearLayout
                         android:id="@+id/itemContentWrapper"
                         android:layout_marginBottom="12dp"
@@ -178,21 +166,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:alpha="0">
-                        <ImageView
-                            android:paddingBottom="1dp"
-                            android:paddingTop="3dp"
-                            android:src="@drawable/things"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp" />
                         <TextView
                             android:layout_marginBottom="20dp"
                             android:textColor="#000000"
-                            android:gravity="center_vertical"
-                            android:layout_weight="9"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:text="hello"
                             android:id="@+id/thingsContent"
                             android:textSize="15dp"/>
