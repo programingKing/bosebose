@@ -35,6 +35,7 @@ import in.srain.cube.views.GridViewWithHeaderAndFooter;
 public class StoreInfoActivity extends Activity {
 
     ArrayList<Item> itemList;
+    ArrayList<Store> storeList;
     ArrayList<Item> storeItemList;
     ImageView imageView;
     Context context;
@@ -59,6 +60,7 @@ public class StoreInfoActivity extends Activity {
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
         likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
         itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
+        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
         store  = (Store) getIntent().getExtras().getSerializable("store");
         imageView = (ImageView)findViewById(R.id.storeImage);
 
@@ -118,7 +120,8 @@ public class StoreInfoActivity extends Activity {
                 Intent i = new Intent(context, ItemInfoActivity.class);
                 i.putExtra("item", sItem);
                 i.putExtra("store",sStore);
-                i.putExtra("itemList",itemList);
+                i.putExtra("itemList", itemList);
+                i.putExtra("storeList", storeList);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }

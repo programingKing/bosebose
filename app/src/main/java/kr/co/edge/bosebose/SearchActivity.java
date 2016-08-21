@@ -27,6 +27,7 @@ public class SearchActivity extends Activity {
     EditText searchKeyword;
     ArrayList<Item> searchItemList;
     ArrayList<Store> storeList;
+    ArrayList<Item> itemList;
     MyAdapter myGridViewAdapter;
 
     @Override
@@ -36,6 +37,7 @@ public class SearchActivity extends Activity {
         setContentView(R.layout.activity_search);
 
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
+        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         String searchItem = (String)getIntent().getSerializableExtra("searchItem");
 
 
@@ -77,6 +79,8 @@ public class SearchActivity extends Activity {
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
                 i.putExtra("item",sItem);
                 i.putExtra("store",sStore);
+                i.putExtra("storeList",storeList);
+                i.putExtra("itemList",itemList);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 

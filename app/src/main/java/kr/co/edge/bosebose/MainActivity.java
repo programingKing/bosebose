@@ -109,6 +109,7 @@ public class MainActivity extends Activity {
                 case R.id.headerSearchBtn:
                     i = new Intent(MainActivity.this, SearchActivity.class);
                     i.putExtra("storeList",storeList);
+                    i.putExtra("itemList", itemList);
                     startActivity(i);
                     break;
                 case R.id.secHeaderThings:

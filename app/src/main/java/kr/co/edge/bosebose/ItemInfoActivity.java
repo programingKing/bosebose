@@ -35,6 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemInfoActivity extends Activity{
 
+    ArrayList<Store> storeList;
     ArrayList<Item> itemList;
     Item item;
     Store store;
@@ -69,6 +70,7 @@ public class ItemInfoActivity extends Activity{
 
         store = (Store)getIntent().getExtras().getSerializable("store");
         item = (Item)getIntent().getExtras().getSerializable("item");
+        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
         itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         imageList = getImageList(item);
         addHit(item.getId()); // 조회수 증가
@@ -174,6 +176,7 @@ public class ItemInfoActivity extends Activity{
                     Intent intent = new Intent(ItemInfoActivity.this, StoreInfoActivity.class);
                     intent.putExtra("store",store);
                     intent.putExtra("itemList",itemList);
+                    intent.putExtra("storeList",storeList);
                     startActivity(intent);
                     break;
                 case R.id.thingsLIke:
@@ -242,6 +245,8 @@ public class ItemInfoActivity extends Activity{
     public void goToSearch(String searchItem) {
         Intent intent = new Intent(ItemInfoActivity.this, SearchActivity.class);
         intent.putExtra("searchItem", searchItem);
+        intent.putExtra("storeList",storeList);
+        intent.putExtra("itemList",itemList);
         startActivity(intent);
     }
 
