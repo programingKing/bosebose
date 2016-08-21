@@ -35,6 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemInfoActivity extends Activity{
 
+    ArrayList<Item> itemList;
     Item item;
     Store store;
     ArrayList<String> imageList;
@@ -68,6 +69,7 @@ public class ItemInfoActivity extends Activity{
 
         store = (Store)getIntent().getExtras().getSerializable("store");
         item = (Item)getIntent().getExtras().getSerializable("item");
+        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         imageList = getImageList(item);
         addHit(item.getId()); // 조회수 증가
 
@@ -171,6 +173,7 @@ public class ItemInfoActivity extends Activity{
                 case R.id.btn_move_store:
                     Intent intent = new Intent(ItemInfoActivity.this, StoreInfoActivity.class);
                     intent.putExtra("store",store);
+                    intent.putExtra("itemList",itemList);
                     startActivity(intent);
                     break;
                 case R.id.thingsLIke:

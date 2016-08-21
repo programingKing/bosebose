@@ -94,6 +94,7 @@ public class MyPagerAdapter extends PagerAdapter {
                     Intent i = new Intent(context, ItemInfoActivity.class);
                     i.putExtra("item", sItem);
                     i.putExtra("store",sStore);
+                    i.putExtra("itemList",itemList);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }
@@ -111,6 +112,7 @@ public class MyPagerAdapter extends PagerAdapter {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent i = new Intent(context, StoreInfoActivity.class);
                     i.putExtra("store",storeList.get(position));
+                    i.putExtra("itemList",itemList);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }
