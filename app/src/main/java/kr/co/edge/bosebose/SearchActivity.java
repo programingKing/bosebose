@@ -26,20 +26,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SearchActivity extends Activity {
     EditText searchKeyword;
     ArrayList<Item> searchItemList;
+    ArrayList<Store> storeList;
+    ArrayList<Item> itemList;
     MyAdapter myGridViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.overridePendingTransition(R.anim.start_enter, R.anim.start_exit);
         setContentView(R.layout.activity_search);
+
+        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
+        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
+        String searchItem = (String)getIntent().getSerializableExtra("searchItem");
+
 
         searchItemList = new ArrayList<>();
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
         searchKeyword = (EditText)findViewById(R.id.searchKeyword);
         ImageButton headerSearchBtn = (ImageButton)findViewById(R.id.HeaderSearchBtn);
-
         headerSearchBtn.setOnClickListener(mClickListener);
+        if (searchItem != null) {
+            searchKeyword.setText(searchItem);
+            getSearchKeyword();
+        }
         searchKeyword.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -57,9 +68,19 @@ public class SearchActivity extends Activity {
         gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Store sStore =null;
+                Item sItem = searchItemList.get(position);
+                for(Store store : storeList ) {
+                    if (store.id == sItem.storeID) {
+                        sStore = store;
+                        break;
+                    }
+                }
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
-                //값으로 position을 넘겨주는데 이를 이용해서 그 물품의 정보를 가져오면 될거라고 생각해봤어요..
-                i.putExtra("item",searchItemList.get(position));
+                i.putExtra("item",sItem);
+                i.putExtra("store",sStore);
+                i.putExtra("storeList",storeList);
+                i.putExtra("itemList",itemList);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
@@ -118,5 +139,9 @@ public class SearchActivity extends Activity {
             }
         });
     }
-
+    @Override
+    public void finish() {
+        super.finish();
+        this.overridePendingTransition(R.anim.end_enter, R.anim.end_exit);
+    }
 }

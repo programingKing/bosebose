@@ -4,8 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
-
+    android:background="#f0f0f0">
 
     <ImageView
         android:layout_width="0dp"
@@ -14,12 +13,12 @@
         android:layout_weight="5"
         android:id="@+id/storesImagePreview" />
     <LinearLayout
-        android:layout_margin="20dp"
+        android:padding="10dp"
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:background="#00ffffff">
+        android:background="#ffffff">
 
         <TextView
             android:textStyle="bold"
@@ -35,30 +34,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:singleLine = "true"
+            android:lines="3"
+            android:ellipsize="end"
+            android:textSize="15dp"
             android:id="@+id/listStoreContent"
             android:text="여기와서 보세" />
-
-
-
-        <!-- android:textAppearance="?android:attr/textAppearanceLarge" -->
-
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/favorite_click"
+                android:layout_gravity="bottom"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:text="즐겨찾기 수  " />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:text="17"
+                android:textSize="15dp"
                 android:id="@+id/listStoreFavoriteNum"
-               />
+                android:layout_gravity="bottom"/>
         </LinearLayout>
 
     </LinearLayout>

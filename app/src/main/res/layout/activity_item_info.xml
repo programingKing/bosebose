@@ -7,6 +7,7 @@
     tools:context="kr.co.edge.bosebose.MainActivity">
 
 <LinearLayout
+        android:background="#f0f0f0"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,33 +15,34 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#ffffff">
+            android:background="#FA8D74">
 
             <ImageButton
-                android:padding="10dp"
+                android:padding="17dp"
                 android:scaleType="fitCenter"
-                android:background="#ffffff"
-                android:layout_width="0dp"
+                android:background="@drawable/button_click"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
                 android:src="@drawable/backbutton"
                 android:layout_weight="0.8"/>
 
             <TextView
-                android:textColor="#000000"
-                android:textSize="20dp"
+                android:textColor="#fff"
+                android:textSize="25dp"
                 android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/thingsStoreName"
-                android:text="hello"
+                android:text="상품 정보"
                 android:layout_weight="9.2"/>
 
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -51,36 +53,50 @@
                     android:id="@+id/thingsImage"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    app:fillColor="#FFFFFFFF"
-                    app:pageColor="#00000000"
-                    app:radius="10dp"
+                    app:fillColor="#FA8D74"
+                    app:pageColor="#d8d8d8"
+                    app:radius="7dp"
                     app:slideInterval="10000"
-                    app:strokeColor="#ffffff"
+                    app:strokeColor="#00ffffff"
                     app:strokeWidth="1dp"/>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff">
+                    android:background="#f0f0f0">
                     <LinearLayout
-                        android:layout_margin="20dp"
+                        android:id="@+id/itemTitleWrapper"
+                        android:background="#ffffff"
+                        android:layout_marginBottom="1dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         >
                         <TextView
+                            android:id="@+id/thingsTitle"
                             android:textColor="#000000"
-                            android:layout_weight="8.5"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="8"
                             android:textStyle="bold"
                             android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:text="타이틀"
-                            android:textSize="10pt"
+                            android:textSize="15dp"
+                            android:gravity="center_vertical"/>
+                        <TextView
+                            android:id="@+id/thingsLikeValue"
+                            android:textColor="#000000"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:text="hello"
                             android:gravity="center_vertical"
-                            android:id="@+id/thingsTitle"/>
+                            android:textSize="15dp"/>
                         <ImageButton
                             android:padding="5dp"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:scaleType="fitCenter"
                             android:background="#ffffff"
                             android:layout_width="0dp"
@@ -90,75 +106,84 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:id="@+id/itemPriceWrapper"
+                        android:layout_marginTop="12dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:alpha="0">
                         <ImageView
-                            android:padding="6dp"
+                            android:paddingBottom="1dp"
+                            android:paddingTop="3dp"
                             android:src="@drawable/price"
-                            android:gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:text="￦"
-                        android:textSize="20dp"/>
-                        <TextView
-                            android:textColor="#000000"
-                            android:gravity="center_vertical"
-                        android:layout_weight="9"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:text="hello"
-                        android:id="@+id/thingsPrice"
-                        android:textSize="20dp"/>
-                        </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:padding="6dp"
-                            android:src="@drawable/things"
                             android:gravity="center_vertical"
                             android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:textSize="20dp"/>
+                            android:layout_height="20dp" />
                         <TextView
                             android:textColor="#000000"
                             android:gravity="center_vertical"
                             android:layout_weight="9"
                             android:layout_width="0dp"
-                            android:layout_height="30dp"
+                            android:layout_height="20dp"
                             android:text="hello"
-                            android:id="@+id/thingsTag"
-                            android:textSize="20dp"/>
+                            android:id="@+id/thingsPrice"
+                            android:textSize="15dp"/>
                     </LinearLayout>
 
-
-                    <TextView
-                        android:textColor="#000000"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="10dp"
+                    <LinearLayout
+                        android:id="@+id/itemTagWrapper"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:text="hello"
+                        android:layout_height="wrap_content"
+                        android:alpha="0">
+                        <ImageView
+                            android:paddingBottom="1dp"
+                            android:paddingTop="3dp"
+                            android:src="@drawable/things"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="9"
+                            android:orientation="horizontal"
+                            android:id="@+id/itemTagContent"></LinearLayout>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#c2c2c2"/>
+                    <LinearLayout
+                        android:id="@+id/itemContentWrapper"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0">
+                        <TextView
+                            android:layout_marginBottom="20dp"
+                            android:textColor="#000000"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="hello"
+                            android:id="@+id/thingsContent"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
 
-                        android:textSize="30dp"/>
                     <ImageButton
                         android:id="@+id/btn_move_store"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:src="@drawable/move"
                         android:scaleType="fitCenter"
-                        android:background="#ffffff"
+                        android:background="#f0f0f0"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                          />

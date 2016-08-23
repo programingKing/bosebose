@@ -4,28 +4,31 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:weightSum="10"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff">
+        android:background="#f0f0f0">
         <Spinner
             android:layout_margin="3dp"
-
+            android:background="@drawable/spinner"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:id="@+id/selectCategorie"
             android:layout_weight="5"
-            android:entries="@array/category"/>
+            android:entries="@array/category"
+            android:dropDownVerticalOffset="28dp" />
         <Spinner
             android:layout_margin="3dp"
-
+            android:background="@drawable/spinner"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:id="@+id/selectFilter"
             android:layout_weight="5"
-            android:entries="@array/filter"/>
+            android:entries="@array/filter"
+            android:dropDownVerticalOffset="28dp" />
     </LinearLayout>
 
 </LinearLayout>

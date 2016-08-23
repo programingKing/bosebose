@@ -10,47 +10,65 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#ffffff">
+            android:background="#FA8D74"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <ImageButton
-                android:padding="10dp"
+                android:padding="17dp"
                 android:scaleType="fitCenter"
-                android:background="#ffffff"
-                android:layout_width="0dp"
+                android:background="@drawable/button_click"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:id="@+id/backBtn"
                 android:src="@drawable/backbutton"
                 android:layout_weight="0.8"/>
 
-            <EditText
-                android:hint="상품 검색"
-                android:background="@drawable/search_bar"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:gravity="center_vertical"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:id="@+id/searchKeyword"
-                android:layout_weight="7.7"/>
+                android:layout_weight="8.1"
+                android:background="#FA8D74">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
+                    android:background="#fff">
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/searchKeyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00ffffff"
+                    android:hint="상품 검색"
+                    android:textSize="20dp"
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
+                    android:gravity="center_vertical"
+                    android:singleLine="true" />
+            </FrameLayout>
+
+
 
             <ImageButton
                 android:padding="9dp"
-                android:background="#ffffff"
+                android:background="@drawable/button_click"
                 android:scaleType="fitCenter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/HeaderSearchBtn"
-                android:src="@drawable/search"
-                android:layout_margin="5dp"
-                android:layout_weight="1.5"/>
+                android:src="@drawable/search_click"
+                android:layout_weight="1.1"/>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff">
+            android:background="#f0f0f0">
 
             <in.srain.cube.views.GridViewWithHeaderAndFooter
                 android:id="@+id/searchResultList"

@@ -2,15 +2,19 @@ package kr.co.edge.bosebose;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +65,16 @@ public class MyPagerAdapter extends PagerAdapter {
             View headerView = layoutInflater.inflate(R.layout.main_grid_items_header, null);
             Spinner headerCategorie = (Spinner)headerView.findViewById(R.id.selectCategorie);
             Spinner headerFilter = (Spinner)headerView.findViewById(R.id.selectFilter);
+
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                    (String[])context.getResources().getStringArray(R.array.category));
+            ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                    (String[])context.getResources().getStringArray(R.array.filter));
+            spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
+            spinnerAdapter2.setDropDownViewResource(R.layout.spinner_dropdown);
+            headerCategorie.setAdapter(spinnerAdapter);
+            headerFilter.setAdapter(spinnerAdapter2);
+
             headerCategorie.setOnItemSelectedListener(mGetItemClickListener);
             headerFilter.setOnItemSelectedListener(mGetItemClickListener);
             gvThings.addHeaderView(headerView);
@@ -80,6 +94,8 @@ public class MyPagerAdapter extends PagerAdapter {
                     Intent i = new Intent(context, ItemInfoActivity.class);
                     i.putExtra("item", sItem);
                     i.putExtra("store",sStore);
+                    i.putExtra("itemList",itemList);
+                    i.putExtra("storeList",storeList);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }
@@ -96,7 +112,9 @@ public class MyPagerAdapter extends PagerAdapter {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent i = new Intent(context, StoreInfoActivity.class);
-                    i.putExtra("store",storeList.get(position));
+                    i.putExtra("store", storeList.get(position));
+                    i.putExtra("itemList", itemList);
+                    i.putExtra("storeList", storeList);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }
@@ -115,9 +133,15 @@ public class MyPagerAdapter extends PagerAdapter {
             switch (parent.getId()) {
                 case R.id.selectCategorie:
                     category = item.toString();
+                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
+                    ((TextView)parent.getChildAt(0)).setTextSize(13);
+                    ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);;
                     break;
                 case R.id.selectFilter:
                     order = item.toString();
+                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
+                    ((TextView)parent.getChildAt(0)).setTextSize(13);
+                    ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);;
                     break;
             }
 
