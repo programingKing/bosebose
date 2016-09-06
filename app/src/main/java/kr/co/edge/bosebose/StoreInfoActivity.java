@@ -55,7 +55,7 @@ public class StoreInfoActivity extends Activity {
         final Display mDisplay = getWindowManager().getDefaultDisplay();
         final int width = mDisplay.getWidth();
         context = this;
-        final ArrayList<Item> storeItemList = new ArrayList<Item>();
+        storeItemList = new ArrayList<Item>();
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
         sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
         likeStores = sharedPreferencesHelper.getStringArrayPref(this, "likeStores");
@@ -64,9 +64,13 @@ public class StoreInfoActivity extends Activity {
         store  = (Store) getIntent().getExtras().getSerializable("store");
         imageView = (ImageView)findViewById(R.id.storeImage);
 
+        //최신것부터 2개만 보여줌
         for (int i = 0, ii = itemList.size() ; i < ii ; i++) {
             if (itemList.get(i).getStoreName().equals(store.getName())) {
                 storeItemList.add(itemList.get(i));
+                if (storeItemList.size() == 2) {
+                    break;
+                }
             }
         }
 
@@ -127,6 +131,18 @@ public class StoreInfoActivity extends Activity {
             }
         });
 
+        TextView storeItemMore = (TextView)findViewById(R.id.storeItemMore);
+        storeItemMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, StoreItemInfo.class);
+                i.putExtra("storeName", store.getName());
+                i.putExtra("itemList", itemList);
+                i.putExtra("storeList", storeList);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
 
         TextView storeTitle = (TextView)findViewById(R.id.storeTitle);
         storeTitle.setText(String.valueOf(store.getName()));

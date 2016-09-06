@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FA8D74">
+
+            <ImageButton
+                android:padding="17dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/button_click"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:id="@+id/backBtn"
+                android:src="@drawable/backbutton"
+                android:layout_weight="0.8"/>
+
+            <TextView
+                android:textColor="#fff"
+                android:textSize="25dp"
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/storeItemTitle"
+                android:text="상점 상품 목록"
+                android:layout_weight="9.2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <in.srain.cube.views.GridViewWithHeaderAndFooter
+                android:background="#f0f0f0"
+                android:id="@+id/storeItemList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:numColumns="2"
+                android:listSelector="#00000000">
+            </in.srain.cube.views.GridViewWithHeaderAndFooter>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
