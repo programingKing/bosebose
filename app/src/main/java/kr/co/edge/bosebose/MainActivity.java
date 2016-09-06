@@ -97,6 +97,7 @@ public class MainActivity extends Activity {
                 case R.id.headerFavoriteStoreBtn:
                     //TODO 암시적 Intent로 전환 가능성
                     i = new Intent(MainActivity.this, FavoriteStoreListActivity.class);
+                    i.putExtra("itemList", itemList);
                     i.putExtra("storeList",storeList);
                     startActivity(i);
                     break;

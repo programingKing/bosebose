@@ -18,6 +18,7 @@ public class FavoriteStoreListActivity extends Activity {
     Intent i;
 
     ArrayList<Store> storeList;
+    ArrayList<Item> itemList;
     ArrayList<String> likeStores;
     ArrayList<Store> likeStoreList;
 
@@ -31,6 +32,7 @@ public class FavoriteStoreListActivity extends Activity {
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
         TextView textView=(TextView)findViewById(R.id.storeName);
         textView.setTypeface(typeface);
+        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
         storeList = (ArrayList<Store>) getIntent().getSerializableExtra("storeList");
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
     }
@@ -56,6 +58,8 @@ public class FavoriteStoreListActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 i = new Intent(FavoriteStoreListActivity.this, StoreInfoActivity.class);
+                i.putExtra("itemList", itemList);
+                i.putExtra("storeList", storeList);
                 i.putExtra("store",likeStoreList.get(position));
                 startActivity(i);
             }

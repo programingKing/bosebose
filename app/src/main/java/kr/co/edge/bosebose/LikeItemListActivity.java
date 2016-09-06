@@ -79,6 +79,8 @@ public class LikeItemListActivity extends Activity {
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
                 i.putExtra("item",sItem);
                 i.putExtra("store",sStore);
+                i.putExtra("itemList",itemList);
+                i.putExtra("storeList",storeList);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
