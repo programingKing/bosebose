@@ -78,8 +78,6 @@ public class ItemInfoActivity extends Activity{
         TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
         TextView thingsTitle = (TextView)findViewById(R.id.thingsTitle);
         thingsTitle.setText(String.valueOf(item.getName()));
-        TextView thingsLikeValue = (TextView)findViewById(R.id.thingsLikeValue);
-        thingsLikeValue.setText(String.valueOf(item.getHit()));
         TextView thingsPrice = (TextView)findViewById(R.id.thingsPrice);
         thingsPrice.setText(String.valueOf(item.getPrice()));
 

@@ -78,74 +78,58 @@
                             android:id="@+id/thingsTitle"
                             android:textColor="#000000"
                             android:layout_marginLeft="10dp"
-                            android:layout_weight="8"
+                            android:layout_weight="7"
                             android:textStyle="bold"
                             android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:text="타이틀"
                             android:textSize="15dp"
                             android:gravity="center_vertical"/>
-                        <TextView
-                            android:id="@+id/thingsLikeValue"
-                            android:textColor="#000000"
-                            android:layout_weight="1"
+                        <LinearLayout
+                            android:id="@+id/itemPriceWrapper"
+                            android:orientation="horizontal"
                             android:layout_width="0dp"
+                            android:layout_weight="3"
                             android:layout_height="30dp"
-                            android:text="hello"
-                            android:gravity="center_vertical"
-                            android:textSize="15dp"/>
-                        <ImageButton
-                            android:padding="5dp"
-                            android:layout_weight="1"
-                            android:scaleType="fitCenter"
-                            android:background="#ffffff"
-                            android:layout_width="0dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/like"
-                            android:id="@+id/thingsLIke"/>
+                            android:alpha="0">
+                            <ImageView
+                                android:src="@drawable/price"
+                                android:gravity="center_vertical"
+                                android:layout_weight="3"
+                                android:padding="8dp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:textColor="#000000"
+                                android:gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:text="hello"
+                                android:id="@+id/thingsPrice"
+                                android:textSize="15dp"/>
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/itemPriceWrapper"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:alpha="0">
-                        <ImageView
-                            android:paddingBottom="1dp"
-                            android:paddingTop="3dp"
-                            android:src="@drawable/price"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp" />
-                        <TextView
-                            android:textColor="#000000"
-                            android:gravity="center_vertical"
-                            android:layout_weight="9"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp"
-                            android:text="hello"
-                            android:id="@+id/thingsPrice"
-                            android:textSize="15dp"/>
-                    </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/itemTagWrapper"
                         android:layout_marginTop="12dp"
+                        android:layout_marginLeft="12dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:alpha="0">
-                        <ImageView
-                            android:paddingBottom="1dp"
-                            android:paddingTop="3dp"
-                            android:src="@drawable/things"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp" />
+                        <!--<ImageView-->
+                            <!--android:paddingBottom="1dp"-->
+                            <!--android:paddingTop="3dp"-->
+                            <!--android:src="@drawable/things"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="20dp" />-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="20dp"
@@ -177,20 +161,49 @@
                             android:textSize="15dp"/>
                     </LinearLayout>
 
-                    <ImageButton
-                        android:id="@+id/btn_move_store"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:src="@drawable/move"
-                        android:scaleType="fitCenter"
-                        android:background="#f0f0f0"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                         />
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:orientation="horizontal" >
+        <ImageButton
+            android:padding="10dp"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:background="#ffffff"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/like"
+            android:id="@+id/thingsLIke"/>
+        <ImageButton
+            android:id="@+id/itemShareBtn"
+            android:layout_weight="1.5"
+            android:src="@drawable/jung_in_hyuk"
+            android:scaleType="fitCenter"
+            android:background="#fff"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            />
+        <TextView
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <ImageButton
+            android:id="@+id/btn_move_store"
+            android:layout_weight="3"
+            android:src="@drawable/move"
+            android:scaleType="fitCenter"
+            android:background="#fff"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            />
     </LinearLayout>
 
 </RelativeLayout>
