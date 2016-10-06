@@ -1,5 +1,7 @@
 package kr.co.edge.bosebose;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,34 +9,65 @@ import java.io.Serializable;
  */
 public class Store implements Serializable {
 
+    @SerializedName("id")
     public int id;
-    private String regDate;
+    @SerializedName("hit")
     private int hit;
+    @SerializedName("name")
     private String name;
+    @SerializedName("address")
     private String address;
+    @SerializedName("phone")
+    private String phoneNumber;
+    @SerializedName("introduction")
     private String introduction;
+    @SerializedName("item_count")
     private int itemCount;
+    @SerializedName("like_count")
     private int favoriteCount;
+    @SerializedName("business_hour")
     private String businessHour;
+    @SerializedName("holiday")
     private String holiday;
+    @SerializedName("image")
     private String image;
-    private String locationX;
-    private String locationY;
+    @SerializedName("latitude")
+    private String latitude;
+    @SerializedName("longitude")
+    private String longitude;
+    @SerializedName("likeCheck")
+    public int likeCheck;
 
-    public String getLocationY() {
-        return locationY;
+    public int getLikeCheck() {
+        return likeCheck;
     }
 
-    public void setLocationY(String locationY) {
-        this.locationY = locationY;
+    public void setLikeCheck(int likeCheck) {
+        this.likeCheck = likeCheck;
     }
 
-    public String getLocationX() {
-        return locationX;
+    public String getLongitude() {
+        return longitude;
     }
 
-    public void setLocationX(String locationX) {
-        this.locationX = locationX;
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getImage() {
@@ -107,14 +140,6 @@ public class Store implements Serializable {
 
     public void setHit(int hit) {
         this.hit = hit;
-    }
-
-    public String getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(String regDate) {
-        this.regDate = regDate;
     }
 
     public int getId() {

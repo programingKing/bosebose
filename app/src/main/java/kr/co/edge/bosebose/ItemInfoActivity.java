@@ -43,89 +43,48 @@ public class ItemInfoActivity extends Activity{
     CarouselView carouselView;
     Context context;
     ImageButton thingsLIke;
-    ArrayList<String> likeItems;
-    SharedPreferencesHelper sharedPreferencesHelper;
-    boolean checkAddLike;
+
     Animation animScale;
     Animation animAlpha;
     Animation animAlpha2;
+    NetworkService service;
+
+    Display mDisplay;
+
+    TextView thingsTitle;
+    TextView thingsLikeValue;
+    TextView thingsPrice;
+    TextView thingsContent;
+    LinearLayout itemTagContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
-        context=this;
-
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
         animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
         animAlpha2 = AnimationUtils.loadAnimation(this, R.anim.anim_alpha2);
 
-        // 즐겨찾기목록을 가져옴
-        sharedPreferencesHelper = (SharedPreferencesHelper)getApplicationContext();
-        likeItems = sharedPreferencesHelper.getStringArrayPref(this, "likeItems");
+        context=this;
+
+        thingsTitle = (TextView)findViewById(R.id.thingsTitle);
+        thingsLikeValue = (TextView)findViewById(R.id.thingsLikeValue);
+        thingsPrice = (TextView)findViewById(R.id.thingsPrice);
+        thingsContent = (TextView)findViewById(R.id.thingsContent);
+        carouselView = (CarouselView) findViewById(R.id.thingsImage);
+        thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
+        itemTagContent = (LinearLayout)findViewById(R.id.itemTagContent);
+
 
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
         findViewById(R.id.btn_move_store).setOnClickListener(mClickListener);
-        Display mDisplay = getWindowManager().getDefaultDisplay();
+        mDisplay = getWindowManager().getDefaultDisplay();
 
-        store = (Store)getIntent().getExtras().getSerializable("store");
         item = (Item)getIntent().getExtras().getSerializable("item");
-        storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
-        itemList = (ArrayList<Item>)getIntent().getSerializableExtra("itemList");
-        imageList = getImageList(item);
-        addHit(item.getId()); // 조회수 증가
+        service = ServiceGenerator.createService(NetworkService.class);
 
-        TextView thingsStoreName = (TextView)findViewById(R.id.thingsStoreName);
-        TextView thingsTitle = (TextView)findViewById(R.id.thingsTitle);
-        thingsTitle.setText(String.valueOf(item.getName()));
-        TextView thingsLikeValue = (TextView)findViewById(R.id.thingsLikeValue);
-        thingsLikeValue.setText(String.valueOf(item.getHit()));
-        TextView thingsPrice = (TextView)findViewById(R.id.thingsPrice);
-        thingsPrice.setText(String.valueOf(item.getPrice()));
+        getItem(item.getId());
 
-        LinearLayout itemTagContent = (LinearLayout)findViewById(R.id.itemTagContent);
-        final String[] itemTag = item.getTag().split("#");
-        for(int i = 1, ii = itemTag.length ; i < ii ; i++) {
-            final String value = itemTag[i];
-            TextView itemTagStr = new TextView(context);
-            itemTagStr.setText("#" + value);
-            itemTagStr.setTextColor(Color.parseColor("#FF101093"));
-            itemTagStr.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    goToSearch(value);
-                }
-            });
-            itemTagContent.addView(itemTagStr);
-        }
-
-        TextView thingsContent = (TextView)findViewById(R.id.thingsContent);
-        thingsContent.setText(String.valueOf(item.getContent()));
-        thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
-
-        Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
-       // Typeface godic = Typeface.createFromAsset(getAssets(),"NotoSans-Regular.ttf");
-        //Typeface boldgodic = Typeface.createFromAsset(getAssets(),"NotoSans-Bold.ttf");
-        thingsStoreName.setTypeface(typeface);
-        //thingsTitle.setTypeface(boldgodic);
-        //thingsPrice.setTypeface(godic);
-
-        if (likeItems.contains(String.valueOf(item.getId()))) {
-            checkAddLike = true;
-            thingsLIke.setImageResource(R.drawable.like_clicked);
-        } else {
-            checkAddLike = false;
-            thingsLIke.setImageResource(R.drawable.like);
-        }
-        thingsLIke.setOnClickListener(mClickListener);
-
-        carouselView = (CarouselView) findViewById(R.id.thingsImage);
-        carouselView.setPageCount(imageList.size());
-        ViewGroup.LayoutParams params = carouselView.getLayoutParams();
-
-        params.height = mDisplay.getWidth();
-        carouselView.setLayoutParams(params);
-        carouselView.setImageListener(imageListener);
     }
 
     @Override
@@ -174,40 +133,84 @@ public class ItemInfoActivity extends Activity{
                     break;
                 case R.id.btn_move_store:
                     Intent intent = new Intent(ItemInfoActivity.this, StoreInfoActivity.class);
-                    intent.putExtra("store",store);
-                    intent.putExtra("itemList",itemList);
-                    intent.putExtra("storeList",storeList);
+                    intent.putExtra("storeID",item.getStoreID());
                     startActivity(intent);
                     break;
                 case R.id.thingsLIke:
                     AnimationSet sets = new AnimationSet(false);
                     sets.addAnimation(animScale);
                     //TODO 즐겨찾기 추가
-                    if (!checkAddLike) {
-                        checkAddLike = true;
-                        likeItems.add(String.valueOf(item.getId()));
-                        thingsLIke.setImageResource(R.drawable.like_clicked);
+                    if (item.likeCheck==0) {
                         thingsLIke.startAnimation(sets);
+                        addLike(item.getId(),LoadingActivity.uuid);
                     } else {
-                        checkAddLike = false;
-                        likeItems.remove(String.valueOf(item.getId()));
-                        thingsLIke.setImageResource(R.drawable.like);
                         thingsLIke.startAnimation(sets);
+                        subLike(item.getId(),LoadingActivity.uuid);
                     }
-                    sharedPreferencesHelper.setStringArrayPref(context, "likeItems", likeItems);
+                 //   sharedPreferencesHelper.setStringArrayPref(context, "likeItems", likeItems);
                     break;
             }
         }
     };
 
+    public void getItem(int id){
+
+        Call<Item> callback = service.getClothe(Integer.toString(id),LoadingActivity.uuid);
+        callback.enqueue(new Callback<Item>() {
+            @Override
+            public void onResponse(Call<Item> call, Response<Item> response) {
+                if(response.isSuccessful()){
+
+                    item = response.body();
+
+                    ViewGroup.LayoutParams params = carouselView.getLayoutParams();
+                    params.height = mDisplay.getWidth();
+                    carouselView.setLayoutParams(params);
+                    imageList = getImageList(item);
+                    carouselView.setImageListener(imageListener);
+                    carouselView.setPageCount(imageList.size());
+
+                    thingsTitle.setText(String.valueOf(item.getName()));
+                    thingsLikeValue.setText(String.valueOf(item.getLikeCount()));
+                    thingsPrice.setText(String.valueOf(item.getPrice()));
+
+                    final String[] itemTag = item.getTag().split("#");
+                    for(int i = 1, ii = itemTag.length ; i < ii ; i++) {
+                        final String value = itemTag[i];
+                        TextView itemTagStr = new TextView(context);
+                        itemTagStr.setText("#" + value);
+                        itemTagStr.setTextColor(Color.parseColor("#FF101093"));
+                        itemTagStr.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                goToSearch(value);
+                            }
+                        });
+                        itemTagContent.addView(itemTagStr);
+                    }
+
+                    thingsContent.setText(String.valueOf(item.getContent()));
+
+                    Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
+
+                    if (item.likeCheck==1 ) {
+                        thingsLIke.setImageResource(R.drawable.like_clicked);
+                    } else {
+                        thingsLIke.setImageResource(R.drawable.like);
+                    }
+                    thingsLIke.setOnClickListener(mClickListener);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Item> call, Throwable t) {
+                Log.i("lsw","error:"+t.getMessage());
+            }
+        });
+    }
+
     public void addHit(int id){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(NetworkService.SERVICE_URL)
-                .build();
-
-        final NetworkService service = retrofit.create(NetworkService.class);
         Call<ResponseBody> callback = service.addHit(Integer.toString(id));
         callback.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -218,25 +221,61 @@ public class ItemInfoActivity extends Activity{
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.i("lsw","error:"+t.getMessage());
-
             }
         });
     }
 
-    public static ArrayList<String> getImageList(Item item){
+    public void addLike(int id, String uuid){
+
+        Call<ResponseBody> callback = service.addLike(Integer.toString(id), uuid);
+        callback.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    thingsLIke.setImageResource(R.drawable.like_clicked);
+                    item.likeCheck = 1;
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("lsw","error:"+t.getMessage());
+            }
+        });
+    }
+
+    public void subLike(int id, String uuid){
+
+        Call<ResponseBody> callback = service.subLike(Integer.toString(id), uuid);
+        callback.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    thingsLIke.setImageResource(R.drawable.like);
+                    item.likeCheck = 0;
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("lsw","error:"+t.getMessage());
+            }
+        });
+    }
+
+
+     public static ArrayList<String> getImageList(Item item){
 
         ArrayList<String> imageList = new ArrayList<>();
 
-        if(item.getImage1().compareTo("") != 0){
+        if(item.getImage1() != null){
             imageList.add(item.getImage1());
         }
-        if(item.getImage2().compareTo("") != 0){
+        if(item.getImage2() != null){
             imageList.add(item.getImage2());
         }
-        if(item.getImage3().compareTo("") != 0){
+        if(item.getImage3() != null){
             imageList.add(item.getImage3());
         }
-        if(item.getImage4().compareTo("") != 0){
+        if(item.getImage4() != null){
             imageList.add(item.getImage4());
         }
         return imageList;

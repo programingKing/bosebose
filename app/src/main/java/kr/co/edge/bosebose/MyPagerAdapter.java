@@ -83,19 +83,11 @@ public class MyPagerAdapter extends PagerAdapter {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    Store sStore =null;
+
                     Item sItem = itemList.get(position);
-                    for(Store store : storeList ) {
-                        if (store.id == sItem.storeID) {
-                            sStore = store;
-                            break;
-                        }
-                    }
                     Intent i = new Intent(context, ItemInfoActivity.class);
                     i.putExtra("item", sItem);
-                    i.putExtra("store",sStore);
-                    i.putExtra("itemList",itemList);
-                    i.putExtra("storeList",storeList);
+
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }
@@ -170,14 +162,9 @@ public class MyPagerAdapter extends PagerAdapter {
 
     public void getItem(String category, String order){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(NetworkService.SERVICE_URL)
-                .build();
-
         Call<List<Item>> callback;
-        final NetworkService service = retrofit.create(NetworkService.class);
-        callback = service.getClothes(category,order);
+        final NetworkService service = ServiceGenerator.createService(NetworkService.class);
+        callback = service.getClothes(category,order,LoadingActivity.uuid);
         callback.enqueue(new Callback<List<Item>>() {
             @Override
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {

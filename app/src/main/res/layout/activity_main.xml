@@ -29,8 +29,6 @@
                 android:id="@+id/headerMainLogoBtn"
                 android:layout_weight="6.7"/>
 
-
-
             <ImageButton
                 android:scaleType="fitCenter"
                 android:background="@drawable/button_click"
