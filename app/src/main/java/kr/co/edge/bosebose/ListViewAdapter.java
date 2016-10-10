@@ -30,6 +30,12 @@ class MyListAdapter extends BaseAdapter {
                 (Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void renewItem(ArrayList<Store> itemList){
+        this.storeList.clear();
+        this.storeList.addAll(itemList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return storeList.size();
@@ -54,9 +60,12 @@ class MyListAdapter extends BaseAdapter {
         ImageView image = (ImageView)convertView.findViewById(R.id.storesImagePreview);
         TextView listStoreContent = (TextView)convertView.findViewById(R.id.listStoreContent);
         TextView listStoreFavoriteNum = (TextView)convertView.findViewById(R.id.listStoreFavoriteNum);
+        TextView storeName = (TextView) convertView.findViewById(R.id.listStoreName);
+
+        storeName.setText(storeList.get(position).getName());
         ImageButton storesLIke = (ImageButton)convertView.findViewById(R.id.storesLIke);
         listStoreContent.setText(storeList.get(position).getIntroduction());
-        listStoreFavoriteNum.setText(String.valueOf(storeList.get(position).getHit()));
+        listStoreFavoriteNum.setText(String.valueOf(storeList.get(position).getFavoriteCount()));
 
 
         Picasso.with(context)

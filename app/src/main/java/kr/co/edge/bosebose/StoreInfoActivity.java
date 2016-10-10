@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
 import okhttp3.ResponseBody;
@@ -38,7 +39,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StoreInfoActivity extends Activity {
-
 
     Context context;
     Store store;
@@ -56,6 +56,9 @@ public class StoreInfoActivity extends Activity {
     TextView storeBreakTime;
     TextView storePhoneNum;
     ImageButton storeLike;
+
+    MyAdapter thingsAdapter;
+    GridViewWithHeaderAndFooter gvThings;
 
     int width;
 
@@ -115,9 +118,10 @@ public class StoreInfoActivity extends Activity {
             }
         });
 
-        MyAdapter thingsAdapter = new MyAdapter (context, R.layout.things_item, storeItemList, context.getResources().getDisplayMetrics().widthPixels);
-        GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.storeGridViewThings);
-        gvThings.setAdapter(thingsAdapter);
+        thingsAdapter = new MyAdapter (context, R.layout.things_item, storeItemList, context.getResources().getDisplayMetrics().widthPixels);
+        gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.storeGridViewThings);
+
+
         gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -154,7 +158,7 @@ public class StoreInfoActivity extends Activity {
 
         Log.i("lsw","ssssss"+storeID);
         getStore(storeID);
-
+        getItems(storeID);
     }
 
     private class WebViewClientClass extends WebViewClient {
@@ -175,7 +179,7 @@ public class StoreInfoActivity extends Activity {
                     AnimationSet sets = new AnimationSet(false);
                     sets.addAnimation(animScale);
                     //TODO 즐겨찾기 추가
-                    if (store.likeCheck==0) {
+                    if (store.likeCheck == 0) {
                         storeLike.startAnimation(sets);
                         addLike(store.getId(),LoadingActivity.uuid);
                     } else {
@@ -198,17 +202,21 @@ public class StoreInfoActivity extends Activity {
                 if(response.isSuccessful()) {
 
                     store = response.body();
+
                     storeTitle.setText(String.valueOf(store.getName()));
                     storesContent.setText(String.valueOf(store.getIntroduction()));
                     storeTime.setText(String.valueOf(store.getBusinessHour()));
                     storeBreakTime.setText(String.valueOf(store.getHoliday()));
-                    storePhoneNum.setText(String.valueOf(store.getHit()));
+                    storePhoneNum.setText(String.valueOf(store.getPhoneNumber()));
                     Picasso.with(context)
                             .load(store.getImage())
                             .resize(width, width)
                             .centerCrop()
                             .into(imageView);
-                    if (store.likeCheck==1 ) {
+
+                    Log.i("lsw","like+" + store.likeCheck);
+
+                    if (store.likeCheck == 1 ) {
                         storeLike.setImageResource(R.drawable.favorite_click);
                     } else {
                         storeLike.setImageResource(R.drawable.favorite);
@@ -218,7 +226,6 @@ public class StoreInfoActivity extends Activity {
                             "http://52.78.112.226:8888/App/Store/GetMap"
                                     +"?longitude="+store.getLongitude()+"&latitude="+store.getLatitude()+"&name="+store.getName();
                     webView.loadUrl(url);
-
                 }
             }
 
@@ -227,6 +234,29 @@ public class StoreInfoActivity extends Activity {
                 Log.i("lsw","error:"+t.getMessage());
             }
         });
+
+    }
+
+    private void getItems(int id){
+
+        Call<List<Item>> callback = service.getStoreItems(Integer.toString(id));
+        callback.enqueue(new Callback<List<Item>>() {
+            @Override
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                if(response.isSuccessful()){
+
+                    storeItemList.addAll(response.body());
+                    gvThings.setAdapter(thingsAdapter);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Item>> call, Throwable t) {
+                Log.i("lsw","가게 아이템 얻어오기 실패");
+            }
+        });
+
 
     }
 
@@ -259,6 +289,8 @@ public class StoreInfoActivity extends Activity {
                 if(response.isSuccessful()){
                     storeLike.setImageResource(R.drawable.favorite);
                     store.likeCheck = 0;
+                }else{
+                    Log.i("lsw","!!!!!!!");
                 }
             }
             @Override
@@ -267,8 +299,5 @@ public class StoreInfoActivity extends Activity {
             }
         });
     }
-
-
-
 
 }

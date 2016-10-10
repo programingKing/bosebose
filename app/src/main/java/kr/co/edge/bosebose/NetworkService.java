@@ -37,8 +37,11 @@ public interface NetworkService {
     @GET("App/Item/GetLikeItems")
     Call<List<Item>> getLikeItems( @Query("device_id") String deviceID);
 
-    @GET("App/Item/SearchItems")
+    @GET("App/Item/SearchItem")
     Call<List<Item>> searchItem(@Query("word") String word);
+
+    @GET("App/Item/GetStoreItems")
+    Call<List<Item>> getStoreItems(@Query("id") String id);
 
     //가게 관련 API
 
@@ -48,7 +51,7 @@ public interface NetworkService {
     @GET("App/Store/AddLike")
     Call<ResponseBody> addStoreLike(@Query("id") String id, @Query("device_id") String deviceID);
 
-    @GET("App/Store/SubHit")
+    @GET("App/Store/SubLike")
     Call<ResponseBody> subStoreLike(@Query("id") String id, @Query("device_id") String deviceID);
 
     @GET("App/Store/GetStore")
@@ -58,7 +61,7 @@ public interface NetworkService {
     Call<List<Store>> getStores(@Query("category") String filter, @Query("order") String order, @Query("device_id") String deviceID);
 
     @GET("App/Store/GetFavoriteStores")
-    Call<List<Store>> getFavoriteStores(@Query("category") String filter, @Query("order") String order, @Query("device_id") String deviceID);
+    Call<List<Store>> getFavoriteStores(@Query("device_id") String deviceID);
 
     @GET("App/Store/GetMap")
     Call<ResponseBody> getStoreMap(@Query("longitude") String lon, @Query("latitude") String lat, @Query("storeName") String storeName);

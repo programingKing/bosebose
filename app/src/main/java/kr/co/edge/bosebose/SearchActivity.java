@@ -68,19 +68,11 @@ public class SearchActivity extends Activity {
         gvThings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Store sStore =null;
+
                 Item sItem = searchItemList.get(position);
-                for(Store store : storeList ) {
-                    if (store.id == sItem.storeID) {
-                        sStore = store;
-                        break;
-                    }
-                }
+
                 Intent i = new Intent(getApplicationContext(), ItemInfoActivity.class);
                 i.putExtra("item",sItem);
-                i.putExtra("store",sStore);
-                i.putExtra("storeList",storeList);
-                i.putExtra("itemList",itemList);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
@@ -119,12 +111,16 @@ public class SearchActivity extends Activity {
             @Override
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
 
-                if(response.body().size()==0) {  Toast.makeText(getApplicationContext(),"검색 결과 없습니다.", Toast.LENGTH_SHORT).show(); }
-                else {
-                    ArrayList<Item> itemList = new ArrayList<>();
-                    itemList.addAll(response.body());
-                    myGridViewAdapter.renewItem(itemList);
-                    myGridViewAdapter.notifyDataSetChanged();
+                if(response.isSuccessful()){
+                    if(response.body().size()==0) {  Toast.makeText(getApplicationContext(),"검색 결과 없습니다.", Toast.LENGTH_SHORT).show(); }
+                    else {
+                        ArrayList<Item> itemList = new ArrayList<>();
+                        itemList.addAll(response.body());
+                        myGridViewAdapter.renewItem(itemList);
+                        myGridViewAdapter.notifyDataSetChanged();
+                    }
+                }else{
+                    Log.i("lsw","!!!");
                 }
             }
 
