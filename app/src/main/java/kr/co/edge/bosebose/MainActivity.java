@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
+
     Intent i;
     private ImageButton seeHeaderThings;
     private ImageButton seeHeaderStores;
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         this.overridePendingTransition(R.anim.start_enter, R.anim.start_exit);
         setContentView(R.layout.activity_main);
         final LinearLayout indicator = (LinearLayout)findViewById(R.id.indicator);
@@ -67,6 +69,7 @@ public class MainActivity extends Activity {
         textView.setTypeface(typeface);
 
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
@@ -88,6 +91,7 @@ public class MainActivity extends Activity {
             public void onPageScrollStateChanged(int state) {}
         });
     }
+
 
     ImageButton.OnClickListener mClickListener = new View.OnClickListener() {
         public void onClick(View v) {

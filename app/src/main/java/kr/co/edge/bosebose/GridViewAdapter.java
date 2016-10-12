@@ -38,6 +38,7 @@ class MyAdapter extends BaseAdapter {
     public void renewItem(ArrayList<Item> itemList){
         this.itemList.clear();
         this.itemList.addAll(itemList);
+        notifyDataSetChanged();
     }
 
     @Override
