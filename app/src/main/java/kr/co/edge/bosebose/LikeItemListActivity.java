@@ -26,7 +26,7 @@ public class LikeItemListActivity extends Activity {
 
 
     ArrayList<Item> likeItemList;
-    MyAdapter thingsAdapter;
+    GridViewAdapter thingsAdapter;
 
     SharedPreferencesHelper sharedPreferencesHelper;
 
@@ -41,7 +41,7 @@ public class LikeItemListActivity extends Activity {
 
         likeItemList = new ArrayList<>();
 
-        thingsAdapter = new MyAdapter (getApplicationContext(), R.layout.things_item, likeItemList, getWindowManager().getDefaultDisplay().getWidth());
+        thingsAdapter = new GridViewAdapter (getApplicationContext(), R.layout.things_item, likeItemList, getWindowManager().getDefaultDisplay().getWidth());
 
         //헤더가 될 뷰를 추가함 GridViewWithHeaderAndFooter는 라이브러리입니다
         GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.favoriteTingsList);

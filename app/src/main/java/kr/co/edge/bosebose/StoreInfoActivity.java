@@ -50,14 +50,13 @@ public class StoreInfoActivity extends Activity {
 
     ImageView imageView;
     TextView storeTitle;
-    TextView tabName;
     TextView storesContent;
     TextView storeTime;
     TextView storeBreakTime;
     TextView storePhoneNum;
     ImageButton storeLike;
 
-    MyAdapter thingsAdapter;
+    GridViewAdapter thingsAdapter;
     GridViewWithHeaderAndFooter gvThings;
 
     int width;
@@ -77,7 +76,6 @@ public class StoreInfoActivity extends Activity {
 
         imageView = (ImageView)findViewById(R.id.storeImage);
         storeTitle = (TextView)findViewById(R.id.storeTitle);
-        tabName = (TextView)findViewById(R.id.tabName);
         storesContent = (TextView)findViewById(R.id.storesContent);
         storeTime = (TextView)findViewById(R.id.storeTime);
         storeBreakTime = (TextView)findViewById(R.id.storeBreakTime);
@@ -96,9 +94,6 @@ public class StoreInfoActivity extends Activity {
         frameLayoutId.bringToFront();
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
 
-
-        final ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) storeLike.getLayoutParams();
-        marginParams.setMargins(width - 80, width - 80, 0, 0);
         final Drawable blackWrapper = ((ImageView)findViewById(R.id.blackWrapper)).getBackground();
         blackWrapper.setAlpha(80);
         scrollViewId.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
@@ -108,17 +103,16 @@ public class StoreInfoActivity extends Activity {
                 if (scrollY > 0 && scrollY <= 600) {
                     blackWrapper.setAlpha(80 + scrollY / 5);
                 }
-                if (width - scrollY >= width / 4) {
+                if (width - scrollY >= width / 6) {
                     frameLayoutIdParams.height = width - scrollY;
                     frameLayoutId.requestLayout();
-                    marginParams.setMargins(width - 80,  width - scrollY - 80, 0, 0);
                     storeLike.requestLayout();
                     storeInfoContext.setAlpha((float)( 1 - scrollY / 400.0));
                 }
             }
         });
 
-        thingsAdapter = new MyAdapter (context, R.layout.things_item, storeItemList, context.getResources().getDisplayMetrics().widthPixels);
+        thingsAdapter = new GridViewAdapter (context, R.layout.things_item, storeItemList, context.getResources().getDisplayMetrics().widthPixels);
         gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.storeGridViewThings);
 
 
@@ -138,7 +132,7 @@ public class StoreInfoActivity extends Activity {
         storeLike.setOnClickListener(mClickListener);
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"yanolja.ttf");
-        tabName.setTypeface(typeface);
+
         storeTitle.setTypeface(typeface);
 
         webView = (WebView)findViewById(R.id.webview);

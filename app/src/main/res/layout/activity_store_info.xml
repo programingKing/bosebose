@@ -5,39 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FA8D74"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/backBtn"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:background="@drawable/button_click"
-                android:padding="17dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/backbutton" />
-
-            <TextView
-                android:id="@+id/tabName"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="9.2"
-                android:gravity="center_vertical"
-                android:text="상점 정보"
-                android:textColor="#fff"
-                android:textSize="27dp" />
-
-        </LinearLayout>
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,13 +40,6 @@
                     android:textColor="#fff"
                     android:textSize="30dp" />
 
-                <ImageButton
-                    android:id="@+id/storesLIke"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="#00000000"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/favorite" />
 
                 <!--상점 시간, 휴무일, 문의-->
                 <LinearLayout
@@ -265,7 +229,41 @@
             </ScrollView>
 
         </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#7afa8d74"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/backBtn"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@drawable/button_click"
+                android:padding="17dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/backbutton" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tabName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8.2"
+                android:gravity="center_vertical"
+                android:textColor="#fff"
+                android:textSize="27dp" />
+
+            <ImageButton
+                android:id="@+id/storesLIke"
+                android:layout_weight="1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#00000000"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/favorite" />
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

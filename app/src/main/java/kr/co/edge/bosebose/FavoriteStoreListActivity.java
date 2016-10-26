@@ -26,7 +26,7 @@ public class FavoriteStoreListActivity extends Activity {
     ArrayList<Store> storeList;
     ArrayList<String> likeStores;
     ArrayList<Store> likeStoreList;
-    MyListAdapter lIstAdapter;
+    ListViewAdapter lIstAdapter;
 
     SharedPreferencesHelper sharedPreferencesHelper;
 
@@ -41,7 +41,7 @@ public class FavoriteStoreListActivity extends Activity {
 
         likeStoreList = new ArrayList<>();
 
-        lIstAdapter = new MyListAdapter (getApplicationContext(), R.layout.stores_item, likeStoreList, getWindowManager().getDefaultDisplay().getWidth());
+        lIstAdapter = new ListViewAdapter (getApplicationContext(), R.layout.stores_item, likeStoreList, getWindowManager().getDefaultDisplay().getWidth());
         ListView lv = (ListView)findViewById(R.id.favoriteStoreList);
         lv.setAdapter(lIstAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

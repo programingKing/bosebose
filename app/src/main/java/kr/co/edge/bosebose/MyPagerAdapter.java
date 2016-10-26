@@ -32,8 +32,8 @@ public class MyPagerAdapter extends PagerAdapter {
     ArrayList<Store> storeList;
     String category = "전체";
     String order ="최신순";
-    MyListAdapter storesAdapter;
-    MyAdapter thingsAdapter;
+    ListViewAdapter storesAdapter;
+    GridViewAdapter thingsAdapter;
 
     LayoutInflater mInflater;
     Context context;
@@ -59,7 +59,7 @@ public class MyPagerAdapter extends PagerAdapter {
             v = mInflater.inflate(R.layout.main_grid_items, null);
             v.findViewById(R.id.mainGridViewThings);
 
-            thingsAdapter = new MyAdapter (context, R.layout.things_item, itemList, context.getResources().getDisplayMetrics().widthPixels);
+            thingsAdapter = new GridViewAdapter (context, R.layout.things_item, itemList, context.getResources().getDisplayMetrics().widthPixels);
             GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)v.findViewById(R.id.mainGridViewThings);
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             View headerView = layoutInflater.inflate(R.layout.main_grid_items_header, null);
@@ -97,7 +97,7 @@ public class MyPagerAdapter extends PagerAdapter {
             v = mInflater.inflate(R.layout.main_grid_stores, null);
             v.findViewById(R.id.mainGridViewStores);
 
-            storesAdapter = new MyListAdapter(context, R.layout.stores_item, storeList, context.getResources().getDisplayMetrics().widthPixels);
+            storesAdapter = new ListViewAdapter(context, R.layout.stores_item, storeList, context.getResources().getDisplayMetrics().widthPixels);
             ListView lvStores = (ListView)v.findViewById(R.id.mainGridViewStores);
             lvStores.setAdapter(storesAdapter);
             lvStores.setOnItemClickListener(new AdapterView.OnItemClickListener() {

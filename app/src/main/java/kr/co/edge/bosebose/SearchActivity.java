@@ -28,7 +28,7 @@ public class SearchActivity extends Activity {
     ArrayList<Item> searchItemList;
     ArrayList<Store> storeList;
     ArrayList<Item> itemList;
-    MyAdapter myGridViewAdapter;
+    GridViewAdapter myGridViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class SearchActivity extends Activity {
             }
         });
 
-        myGridViewAdapter = new MyAdapter (getApplicationContext(), R.layout.things_item, searchItemList, getWindowManager().getDefaultDisplay().getWidth());
+        myGridViewAdapter = new GridViewAdapter (getApplicationContext(), R.layout.things_item, searchItemList, getWindowManager().getDefaultDisplay().getWidth());
         //헤더가 될 뷰를 추가함 GridViewWithHeaderAndFooter는 라이브러리입니다
         GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)findViewById(R.id.searchResultList);
         gvThings.setAdapter(myGridViewAdapter);

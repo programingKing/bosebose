@@ -14,14 +14,14 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
-class MyListAdapter extends BaseAdapter {
+class ListViewAdapter extends BaseAdapter {
     Context context;
     int layout;
     int width;
     LayoutInflater inf;
     ArrayList<Store> storeList;
 
-    public MyListAdapter(Context context, int layout, ArrayList<Store> storeList, int width) {
+    public ListViewAdapter(Context context, int layout, ArrayList<Store> storeList, int width) {
         this.context = context;
         this.layout = layout;
         this.storeList = storeList;

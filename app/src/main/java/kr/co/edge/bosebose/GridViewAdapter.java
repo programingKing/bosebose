@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import kr.co.edge.bosebose.R;
 
-class MyAdapter extends BaseAdapter {
+class GridViewAdapter extends BaseAdapter {
     Context context;
     int layout;
     int width;
@@ -26,7 +26,7 @@ class MyAdapter extends BaseAdapter {
     ArrayList<Item> itemList;
 
 
-    public MyAdapter(Context context, int layout, ArrayList<Item> itemList, int width) {
+    public GridViewAdapter(Context context, int layout, ArrayList<Item> itemList, int width) {
         this.context = context;
         this.layout = layout;
         this.itemList = itemList;

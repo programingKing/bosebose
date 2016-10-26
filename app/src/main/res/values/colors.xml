@@ -3,6 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="pressed">#EF7D6A</color>
-    <color name="nonpressed">#FA8D74</color>
+    <color name="pressed">#7aef7d6a</color>
+    <color name="nonpressed">#00fa8d74</color>
 </resources>
