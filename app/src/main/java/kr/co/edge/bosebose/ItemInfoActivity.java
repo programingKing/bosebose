@@ -32,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Url;
 
 public class ItemInfoActivity extends Activity{
 
@@ -75,7 +76,6 @@ public class ItemInfoActivity extends Activity{
         thingsLIke = (ImageButton)findViewById(R.id.thingsLIke);
         itemTagContent = (LinearLayout)findViewById(R.id.itemTagContent);
 
-
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
         findViewById(R.id.btn_move_store).setOnClickListener(mClickListener);
         mDisplay = getWindowManager().getDefaultDisplay();
@@ -116,12 +116,23 @@ public class ItemInfoActivity extends Activity{
 
     ImageListener imageListener = new ImageListener() {
         @Override
-        public void setImageForPosition(int position, ImageView imageView) {
+        public void setImageForPosition(int _position, ImageView imageView) {
+            final int position = _position;
+
             Picasso.with(context)
                     .load(imageList.get(position))
                     .resize(500,500)
                     .centerCrop()
                     .into(imageView);
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(ItemInfoActivity.this, ItemInfoImage.class);
+                    i.putExtra("imageUri",imageList.get(position));
+                    startActivity(i);
+                }
+            });
         }
     };
 
@@ -168,7 +179,7 @@ public class ItemInfoActivity extends Activity{
                     carouselView.setLayoutParams(params);
                     imageList = getImageList(item);
                     carouselView.setImageListener(imageListener);
-                    carouselView.setPageCount(imageList.size());
+                    carouselView.setPageCount(imageList.size());;
 
                     thingsTitle.setText(String.valueOf(item.getName()));
                     thingsLikeValue.setText(String.valueOf(item.getLikeCount()));

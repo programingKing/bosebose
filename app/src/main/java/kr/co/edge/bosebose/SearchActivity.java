@@ -46,6 +46,8 @@ public class SearchActivity extends Activity {
         findViewById(R.id.backBtn).setOnClickListener(mClickListener);
         searchKeyword = (EditText)findViewById(R.id.searchKeyword);
         ImageButton headerSearchBtn = (ImageButton)findViewById(R.id.HeaderSearchBtn);
+        ImageButton search_keyWord_delete = (ImageButton)findViewById(R.id.search_keyWord_delete);
+
         headerSearchBtn.setOnClickListener(mClickListener);
         if (searchItem != null) {
             searchKeyword.setText(searchItem);
@@ -58,6 +60,12 @@ public class SearchActivity extends Activity {
                     getSearchKeyword();
                 }
                 return false;
+            }
+        });
+        search_keyWord_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchKeyword.setText("");
             }
         });
 
