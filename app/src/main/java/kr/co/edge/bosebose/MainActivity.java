@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
         storeList = (ArrayList<Store>)getIntent().getSerializableExtra("storeList");
 
         mPager = (ViewPager)findViewById(R.id.mian_grid_pager);
-        mPager.setAdapter(new MyPagerAdapter(getApplicationContext(),itemList,storeList));
+        mPager.setAdapter(new MyPagerAdapter(MainActivity.this,itemList,storeList));
         mPager.setCurrentItem(0);
 
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -62,13 +62,13 @@ public class MyPagerAdapter extends PagerAdapter {
             thingsAdapter = new GridViewAdapter (context, R.layout.things_item, itemList, context.getResources().getDisplayMetrics().widthPixels);
             GridViewWithHeaderAndFooter gvThings = (GridViewWithHeaderAndFooter)v.findViewById(R.id.mainGridViewThings);
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            View headerView = layoutInflater.inflate(R.layout.main_grid_items_header, null);
+            View headerView = layoutInflater.from(context).inflate(R.layout.main_grid_items_header, null);
             Spinner headerCategorie = (Spinner)headerView.findViewById(R.id.selectCategorie);
             Spinner headerFilter = (Spinner)headerView.findViewById(R.id.selectFilter);
 
-            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.select_dialog_item,
                     (String[])context.getResources().getStringArray(R.array.category));
-            ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+            ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(context, android.R.layout.select_dialog_item,
                     (String[])context.getResources().getStringArray(R.array.filter));
             spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
             spinnerAdapter2.setDropDownViewResource(R.layout.spinner_dropdown);
